@@ -1,9 +1,37 @@
 return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+        'hrsh7th/nvim-cmp',
+        'hrsh7th/cmp-nvim-lsp',
+        'L3MON4D3/LuaSnip',
+    },
     config = function()
+        local cmp = require('cmp')
+        cmp.setup({
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body)
+                end,
+            },
+            mapping = cmp.mapping.preset.insert({
+                ['<Down>'] = cmp.mapping.select_next_item(),
+                ['<Up>'] = cmp.mapping.select_prev_item(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            }),
+            sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+                { name = 'buffer' },
+            }),
+        })
+
         -- Setup language servers.
         local lspconfig = require('lspconfig')
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+        lspconfig.gopls.setup({
+            capabilities = capabilities,
+        })
 
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
