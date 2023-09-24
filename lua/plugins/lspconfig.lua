@@ -2,29 +2,10 @@ return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-nvim-lsp',
-        'L3MON4D3/LuaSnip',
+        'ionide/Ionide-vim',
+        "barreiroleo/ltex-extra.nvim",
     },
     config = function()
-        local cmp = require('cmp')
-        cmp.setup({
-            snippet = {
-                expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
-                end,
-            },
-            mapping = cmp.mapping.preset.insert({
-                ['<Down>'] = cmp.mapping.select_next_item(),
-                ['<Up>'] = cmp.mapping.select_prev_item(),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
-            }),
-            sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'buffer' },
-            }),
-        })
-
         -- Setup language servers.
         local lspconfig = require('lspconfig')
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -33,11 +14,36 @@ return {
             capabilities = capabilities,
         })
 
+        lspconfig.nil_ls.setup({
+            capabilities = capabilities,
+        })
+
+        lspconfig.ocamllsp.setup({
+            capabilities = capabilities,
+        })
+
+        --[[
+        lspconfig.ltex.setup({
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+                require("ltex_extra").setup({})
+            end,
+            cmd = { "ltex-ls", "--endless" },
+            filetypes = { "markdown", "text", "norg", "plaintext", "tex" },
+            flags = { debounce_text_changes = 300 },
+        })
+        ]]
+
+        require('ionide').setup({
+            capabilities = capabilities,
+        })
+
+
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-        vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+        vim.keymap.set('n', '<S-Left>', vim.diagnostic.goto_prev)
+        vim.keymap.set('n', '<S-Right>', vim.diagnostic.goto_next)
         vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
         -- Use LspAttach autocommand to only map the following keys
@@ -51,25 +57,29 @@ return {
                 -- Buffer local mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf }
-                vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-                vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-                vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+                vim.keymap.set('n', '<Enter>', vim.lsp.buf.definition, opts)
+                vim.keymap.set('n', '<S-Enter>', vim.lsp.buf.implementation, opts)
+                vim.keymap.set('n', '<C-Enter> ', vim.lsp.buf.type_definition, opts)
+                vim.keymap.set('n', '<C-S-Enter>', vim.lsp.buf.definition, opts)
+                vim.keymap.set('n', '<C-u>', vim.lsp.buf.references, opts)
+
+                vim.keymap.set('n', 'h', vim.lsp.buf.hover, opts)
                 vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
                 vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
                 vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
                 vim.keymap.set('n', '<space>wl', function()
                     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                 end, opts)
 
-                vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
                 vim.keymap.set('n', '<C-r>', vim.lsp.buf.rename, opts)
                 vim.keymap.set({ 'n', 'v' }, '<C-a>', vim.lsp.buf.code_action, opts)
-                vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-                vim.keymap.set('n', '<C-p>', function()
+                vim.keymap.set('n', '<C-o>', function()
                     vim.lsp.buf.format({ async = true })
                 end, opts)
             end,
         })
+
+        vim.lsp.set_log_level("debug")
     end,
 }

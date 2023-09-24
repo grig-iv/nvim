@@ -29,8 +29,10 @@ map('', '<C-Up>', '{')
 map('', '<C-Down>', '}')
 map('', '<C-Right>', 'W')
 
-map('', '<Home>', 'g^')
-map('', '<End>', 'g$')
+map('', '<Home>', '^')
+map('', '<End>', 'g_')
+map({'n', 'v'}, '<S-Home>', 'g0')
+map('', '<S-End>', 'g$')
 
 map('', '<PageUp>', '<C-u>')
 map('', '<PageDown>', '<C-d>')
@@ -39,8 +41,19 @@ map('', '<S-PageDown>', '<C-f>')
 map('', '<C-PageUp>', 'gg')
 map('', '<C-PageDown>', 'G')
 
-map('n', '<F14>', '<C-o>')
-map('n', '<F17>', '<C-i>')
+map('n', '<Backspace>', '<C-o>')
+map('n', '<Space>', '<C-i>')
+
+-- removing double click
+map('n', 'dd', '<Nop>')
+map('n', 'cc', '<Nop>')
+map('n', 'yy', '<Nop>')
+map('n', 'dl', 'dd')
+map('n', 'cl', 'cc')
+map('n', 'yl', 'yy')
+map('n', 'dx', 'dl')
+map('n', 'cx', 'cl')
+map('n', 'yx', 'yl')
 
 -- buffers
 map('n', '<C-Tab>', '<Cmd>bn<Cr>')
@@ -48,19 +61,25 @@ map('n', '<S-C-Tab>', '<Cmd>bp<Cr>')
 
 map('n', '<C-w>', '<Cmd>bd<Cr>')
 
+-- rework X key
+map('n', 'xu', 'gUl')
+map('n', 'xl', 'gul')
+map('n', 'xi', '<C-a>')
+map('n', 'xd', '<C-x>')
+
 -- enhance
+map('n', '<C-q>', '<Cmd>xa<Cr>')
 map('n', 'Q', '@q')
 map('n', 'Y', 'y$')
 map('n', 'U', '<C-r>')
-map('n', 'X', 'r')
+map('', '<C-y>', '"+y')
+map('', '<C-p>', '"+p')
 
 map('n', 'j', 'J')
 map('n', 'J', 'kJ')
-map('n', 'h', 'H')
 
 map('', '<C-,>', 'F.')
 map('', '<C-.>', 'f.')
 
-map('', '<C-s>', '<Esc><Cmd>w<CR>')
+map('', '<C-S-s>', '<Esc><Cmd>w<CR>')
 map('n', '<Tab>', '<C-^>')
-map('n', '<Esc>', ':nohl<CR>')

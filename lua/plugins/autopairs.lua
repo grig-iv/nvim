@@ -1,7 +1,5 @@
 return {
-    {
-        'windwp/nvim-autopairs',
-        event = { 'BufRead', 'BufNewFile' },
-        config = true,
-    },
+    'windwp/nvim-autopairs',
+    event = { 'BufRead', 'BufNewFile' },
+    config = true,
 }

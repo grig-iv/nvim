@@ -35,12 +35,25 @@ local function telescope(builtin, opts)
 end
 
 return {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
-    dependencies = 'nvim-lua/plenary.nvim',
-    cmd = 'Telescope',
-    keys = {
-        { '<C-f>', telescope('files'), desc = 'Find Files (root + git)' },
-        { 't', '<cmd>Telescope<cr>', desc = 'Telescope' },
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.3',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        cmd = 'Telescope',
+        keys = {
+            { '<C-f>', telescope('files'), desc = 'Find Files (root + git)' },
+            { 't', '<cmd>Telescope<cr>', desc = 'Telescope' },
+        },
+    },
+    {
+        'nvim-telescope/telescope-frecency.nvim',
+        dependencies = { 'kkharji/sqlite.lua' },
+        enabled = false,
+        config = function()
+            require('telescope').load_extension('frecency')
+        end,
+        keys = {
+            { '<C-s>', '<cmd>Telescope frecency<cr>', desc = 'Switch to resent files' },
+        },
     },
 }
