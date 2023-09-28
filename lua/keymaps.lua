@@ -44,6 +44,14 @@ map('', '<C-PageDown>', 'G')
 map('n', '<Backspace>', '<C-o>')
 map('n', '<Space>', '<C-i>')
 
+-- pane navigation
+map('n', '<Leader>|', '<C-w>v')
+map('n', '<Leader>-', '<C-w>s')
+map('n', '<M-Left>', '<C-w>h')
+map('n', '<M-Up>', '<C-w>k')
+map('n', '<M-Down>', '<C-w>j')
+map('n', '<M-Right>', '<C-w>l')
+
 -- removing double click
 map('n', 'dd', '<Nop>')
 map('n', 'cc', '<Nop>')
