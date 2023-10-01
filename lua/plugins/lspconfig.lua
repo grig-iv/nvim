@@ -1,14 +1,22 @@
 return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
+    priority = 500,
     dependencies = {
+        'folke/neodev.nvim',
         'ionide/Ionide-vim',
-        "barreiroleo/ltex-extra.nvim",
+        'barreiroleo/ltex-extra.nvim',
     },
     config = function()
+        require('neodev').setup()
+
         -- Setup language servers.
         local lspconfig = require('lspconfig')
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+        lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+        })
 
         lspconfig.gopls.setup({
             capabilities = capabilities,
@@ -16,6 +24,14 @@ return {
 
         lspconfig.nil_ls.setup({
             capabilities = capabilities,
+            autostart = true,
+            settings = {
+                ['nil'] = {
+                    formatting = {
+                        command = { 'alejandra', '--quiet' },
+                    },
+                },
+            },
         })
 
         lspconfig.ocamllsp.setup({
@@ -33,11 +49,9 @@ return {
             flags = { debounce_text_changes = 300 },
         })
         ]]
-
         require('ionide').setup({
             capabilities = capabilities,
         })
-
 
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -79,7 +93,5 @@ return {
                 end, opts)
             end,
         })
-
-        vim.lsp.set_log_level("debug")
     end,
 }

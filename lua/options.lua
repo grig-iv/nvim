@@ -2,7 +2,7 @@ local opt = vim.opt
 
 opt.number = true -- show line numbers
 opt.relativenumber = true -- enable relative line numbers
--- opt.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
+opt.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
 opt.scrolloff = 5 -- lead scroll by 8 lines
 
 opt.ignorecase = true -- always case-insensitive
