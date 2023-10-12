@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugins
 require('lazy').setup('plugins', {
+    defaults = { cond = vim.g.vscode },
     change_detection = {
         notify = false, -- get a notification when changes are found
     },

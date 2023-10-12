@@ -4,8 +4,6 @@ return {
     priority = 500,
     dependencies = {
         'folke/neodev.nvim',
-        'ionide/Ionide-vim',
-        'barreiroleo/ltex-extra.nvim',
     },
     config = function()
         require('neodev').setup()
@@ -38,19 +36,8 @@ return {
             capabilities = capabilities,
         })
 
-        --[[
-        lspconfig.ltex.setup({
-            capabilities = capabilities,
-            on_attach = function(client, bufnr)
-                require("ltex_extra").setup({})
-            end,
-            cmd = { "ltex-ls", "--endless" },
-            filetypes = { "markdown", "text", "norg", "plaintext", "tex" },
-            flags = { debounce_text_changes = 300 },
-        })
-        ]]
-        require('ionide').setup({
-            capabilities = capabilities,
+        lspconfig.rescriptls.setup({
+            cmd = { 'node', '/home/grig-iv/.local/share/nvim/lazy/vim-rescript/server/out/server.js', '--stdio' },
         })
 
         -- Global mappings.
