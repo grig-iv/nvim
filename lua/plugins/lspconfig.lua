@@ -16,10 +16,6 @@ return {
             capabilities = capabilities,
         })
 
-        lspconfig.gopls.setup({
-            capabilities = capabilities,
-        })
-
         lspconfig.nil_ls.setup({
             capabilities = capabilities,
             autostart = true,
@@ -36,9 +32,23 @@ return {
             capabilities = capabilities,
         })
 
+        --[[
+        lspconfig.metals.setup({
+            capabilities = capabilities,
+        })
+
         lspconfig.rescriptls.setup({
             cmd = { 'node', '/home/grig-iv/.local/share/nvim/lazy/vim-rescript/server/out/server.js', '--stdio' },
         })
+
+        lspconfig.gopls.setup({
+            capabilities = capabilities,
+        })
+
+        lspconfig.hls.setup({
+            capabilities = capabilities,
+        })
+        --]]
 
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
