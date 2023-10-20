@@ -1,3 +1,11 @@
+local function icons_setup()
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    end
+end
+
 return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -7,6 +15,8 @@ return {
     },
     config = function()
         require('neodev').setup()
+
+        icons_setup()
 
         -- Setup language servers.
         local lspconfig = require('lspconfig')
@@ -49,7 +59,6 @@ return {
             capabilities = capabilities,
         })
         --]]
-
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
