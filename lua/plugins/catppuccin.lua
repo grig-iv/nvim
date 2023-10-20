@@ -4,6 +4,26 @@ return {
     priority = 1000,
     opts = {
         flavour = 'mocha',
+        term_colors = true,
+        styles = {
+            comments = { "italic" },
+            conditionals = { "bold" },
+            loops = {},
+            functions = {},
+            keywords = { "bold" },
+            strings = {},
+            variables = {},
+            numbers = {},
+            booleans = { "bold" },
+            properties = {},
+            types = {},
+            operators = {},
+        },
+        custom_highlights = function(catppuccin)
+            return {
+                CursorLineNR = { fg = catppuccin.sapphire },
+            }
+        end,
         integrations = {
             alpha = true,
             cmp = true,
