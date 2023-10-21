@@ -1,6 +1,6 @@
 return {
     'jinh0/eyeliner.nvim',
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
         highlight_on_key = false,
     },
