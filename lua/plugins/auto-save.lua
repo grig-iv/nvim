@@ -1,6 +1,6 @@
 return {
     'Pocco81/auto-save.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
     opts = {
         execution_message = {
             message = function()

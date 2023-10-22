@@ -1,6 +1,6 @@
 return {
     'petertriho/nvim-scrollbar',
-    event = 'BufReadPost',
+    event = { 'BufReadPost' },
     config = true,
     opts = {
         excluded_buftypes = {
