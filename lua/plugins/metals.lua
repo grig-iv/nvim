@@ -1,3 +1,20 @@
+local function metals_status_handler(err, status, ctx)
+    local val = {}
+    -- trim and remove spinner
+    local text = status.text:gsub('[⠇⠋⠙⠸⠴⠦]', ''):gsub("^%s*(.-)%s*$", "%1")
+    if status.hide then
+        val = { kind = "end" }
+    elseif status.show then
+        val = { kind = "begin", title = text }
+    elseif status.text then
+        val = { kind = "report", message = text }
+    else
+        return
+    end
+    local msg = { token = "metals", value = val }
+    vim.lsp.handlers["$/progress"](err, msg, ctx)
+end
+
 return {
     'scalameta/nvim-metals',
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -38,6 +55,10 @@ return {
                 vim.lsp.buf.format({ async = true })
             end, opts)
         end
+
+
+        metals.init_options.statusBarProvider = 'on'
+        metals.handlers = { ['metals/status'] = metals_status_handler }
 
         local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
         vim.api.nvim_create_autocmd("FileType", {
