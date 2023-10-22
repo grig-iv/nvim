@@ -8,7 +8,7 @@ return {
         },
         scope = {
             char = "┆",
-            highlight = { "Function", "Label" },
+            highlight = { "CursorLineNR" },
             show_start = false,
             show_end = false,
         },
