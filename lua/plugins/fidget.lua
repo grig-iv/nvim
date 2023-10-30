@@ -2,5 +2,9 @@ return {
     'j-hui/fidget.nvim',
     tag = 'legacy',
     event = { 'LspAttach' },
-    opts = {},
+    opts = {
+        text = {
+            spinner = "dots_pulse"
+        }
+    },
 }

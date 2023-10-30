@@ -3,6 +3,7 @@ return {
     build = ':TSUpdate',
     cmd = { 'TSUpdateSync' },
     config = function(_, opts)
+        require('nvim-treesitter.install').compilers = { 'gcc' }
         require('nvim-treesitter.configs').setup(opts)
     end,
     opts = {

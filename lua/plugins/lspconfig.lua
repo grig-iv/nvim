@@ -42,6 +42,10 @@ return {
             capabilities = capabilities,
         })
 
+        lspconfig.gopls.setup({
+            capabilities = capabilities,
+        })
+
         --[[
         lspconfig.metals.setup({
             capabilities = capabilities,
@@ -49,10 +53,6 @@ return {
 
         lspconfig.rescriptls.setup({
             cmd = { 'node', '/home/grig-iv/.local/share/nvim/lazy/vim-rescript/server/out/server.js', '--stdio' },
-        })
-
-        lspconfig.gopls.setup({
-            capabilities = capabilities,
         })
 
         lspconfig.hls.setup({

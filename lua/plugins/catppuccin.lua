@@ -7,6 +7,7 @@ return {
         term_colors = true,
         custom_highlights = function(colors)
             return {
+                Cursor = { fg = colors.sapphire },
                 CursorLineNR = { fg = colors.sapphire },
                 Keyword = { fg = colors.red, bold = true, },
                 Statement = { fg = colors.red, bold = true, },
