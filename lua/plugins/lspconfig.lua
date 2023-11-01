@@ -24,6 +24,13 @@ return {
 
         lspconfig.lua_ls.setup({
             capabilities = capabilities,
+            settings = {
+                Lua = {
+                    workspace = {
+                        checkThirdParty = false,
+                    }
+                }
+            }
         })
 
         lspconfig.nil_ls.setup({
