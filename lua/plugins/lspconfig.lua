@@ -81,6 +81,9 @@ return {
                 -- Enable completion triggered by <c-x><c-o>
                 vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
+                -- Enable signcolumn for lsp icons in gutter (for removing twitches)
+                vim.wo.signcolumn = "yes"
+
                 -- Buffer local mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 local opts = { buffer = ev.buf }
