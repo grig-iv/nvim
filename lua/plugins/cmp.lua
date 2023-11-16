@@ -2,10 +2,12 @@ return {
     'hrsh7th/nvim-cmp', -- Autocompletion plugin
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp', -- Autocompletion with LSPs
-        'hrsh7th/cmp-buffer',   -- Autocompletion from words in buffer
-        'hrsh7th/cmp-path',     -- Autocompletion from files
-        'hrsh7th/cmp-cmdline',  -- Autocompletion for nvim commands
+        'hrsh7th/cmp-nvim-lsp',       -- Autocompletion with LSPs
+        'hrsh7th/cmp-buffer',         -- Autocompletion from words in buffer
+        'hrsh7th/cmp-path',           -- Autocompletion from files
+        'hrsh7th/cmp-cmdline',        -- Autocompletion for nvim commands
+
+        "PaterJason/cmp-conjure",     --conjure
 
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip', -- Snippets autocompletion
@@ -21,6 +23,14 @@ return {
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
                 { name = 'buffer',  keyword_length = 4 },
+                {
+                    name = "buffer",
+                    option = {
+                        sources = {
+                            { name = "conjure" },
+                        },
+                    },
+                },
                 { name = 'path' },
                 { name = 'luasnip' },
             }),

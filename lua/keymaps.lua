@@ -1,8 +1,6 @@
 local map = require('utils').map
 
 -- nopes
-map('', 'W', '<Nop>')
-map('', 'B', '<Nop>')
 map('', '^', '<Nop>')
 map('', '$', '<Nop>')
 map('', '<C-d>', '<Nop>')
@@ -77,7 +75,8 @@ map('n', 'xd', '<C-x>')
 
 -- enhance
 map('n', '<C-q>', '<Cmd>xa<Cr>')
-map('n', '<C-S-q>', '<Cmd>q!<Cr>')
+map('n', '<C-S-q>', '<Cmd>wa<Cr><Cmd>qa!<Cr>')
+map('n', '<C-s>', '<Cmd>wa<Cr>')
 map('n', 'Q', '@q')
 map('n', 'Y', 'y$')
 map('n', 'U', '<C-r>')

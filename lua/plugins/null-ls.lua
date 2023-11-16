@@ -10,6 +10,7 @@ return {
             sources = {
                 cspell.diagnostics.with({ filetypes = cspell_filetypes }),
                 cspell.code_actions.with({ filetypes = cspell_filetypes }),
+                null_ls.builtins.formatting.fnlfmt
             },
         })
     end,

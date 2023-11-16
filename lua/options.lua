@@ -1,33 +1,4 @@
-local opt = vim.opt
-
-opt.number = true -- show line numbers
-opt.relativenumber = true -- enable relative line numbers
-opt.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
-opt.scrolloff = 5 -- lead scroll by 8 lines
-
-opt.ignorecase = true -- always case-insensitive
-opt.smartcase = true -- enable smart-case search
-opt.incsearch = true -- searches for strings incrementally
-opt.hlsearch = false -- highlight all matches on previous search pattern
-
-opt.autoindent = true -- auto-indent new lines
-opt.smartindent = true -- enable smart-indent
-opt.expandtab = true -- use spaces instead of tabs
-opt.tabstop = 4 -- number of columns per tab
-opt.softtabstop = 4 -- number of spaces per Tab
-opt.shiftwidth = 4 -- number of auto-indent spaces
-
-opt.confirm = true -- confirm to save changes before exit
-opt.swapfile = false -- create swap file
-opt.wrap = false -- do not wrap long lines
-opt.updatetime = 100 -- faster completion
-opt.cursorline = true -- highlight cursor line
-opt.spelllang = 'en_us' -- use en_us to spellcheck
-opt.mouse = 'a' -- allow the mouse to be used in neovim
-opt.termguicolors = true -- enable highlight groups
-
-local g = vim.g
-
-g.mapleader = ' ' -- space as leader key
-g.maplocalleader = '/' -- fowardslash as local leader key
-
+-- [nfnl] Compiled from fnl/options.fnl by https://github.com/Olical/nfnl, do not edit.
+local frame = require("frame")
+frame["set-opts"]({number = true, relativenumber = true, clipboard = "unnamedplus", scrolloff = 5, ignorecase = true, smartcase = true, incsearch = true, autoindent = true, smartindent = true, expandtab = true, tabstop = 4, softtabstop = 4, shiftwidth = 4, confirm = true, updatetime = 100, cursorline = true, spelllang = "en_us", mouse = "a", termguicolors = true, hlsearch = false, swapfile = false, wrap = false})
+return frame["set-gs"]({mapleader = " ", maplocalleader = "/"})

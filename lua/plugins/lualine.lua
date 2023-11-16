@@ -1,3 +1,11 @@
+local function repl_component()
+    return "REPL"
+end
+
+local function on_click(...)
+    print("yo")
+end
+
 -- TODO syncthing status integration
 return {
     "nvim-lualine/lualine.nvim",
@@ -22,9 +30,18 @@ return {
                 }
             } },
             lualine_x = { 'diagnostics' },
-            lualine_y = { 'encoding' },
+            lualine_y = {
+                {
+                    function()
+                        return 'REPL'
+                    end,
+                    on_click = function()
+                        print("yo")
+                    end
+                },
+            },
             lualine_z = { 'location' }
-        },
+        }
     },
     config = function(_, opts)
         require("lualine").setup(opts)

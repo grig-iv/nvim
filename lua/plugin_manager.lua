@@ -18,4 +18,7 @@ require('lazy').setup('plugins', {
     change_detection = {
         notify = false, -- get a notification when changes are found
     },
+    performance = {
+        reset_packpath = false,
+    },
 })

@@ -22,6 +22,10 @@ return {
         local lspconfig = require('lspconfig')
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+        vim.diagnostic.config({
+            virtual_text = false,
+        })
+
         lspconfig.lua_ls.setup({
             capabilities = capabilities,
             settings = {
@@ -45,6 +49,10 @@ return {
             },
         })
 
+        lspconfig.clojure_lsp.setup({
+            capabilities = capabilities,
+        })
+
         lspconfig.ocamllsp.setup({
             capabilities = capabilities,
         })
@@ -53,7 +61,32 @@ return {
             capabilities = capabilities,
         })
 
+        lspconfig.fennel_language_server.setup({
+            capabilities = capabilities,
+            settings = {
+                fennel = {
+                    workspace = {
+                        library = vim.api.nvim_list_runtime_paths(),
+                    },
+                    diagnostics = {
+                        globals = { 'vim', 'awesome' },
+                    },
+                },
+            },
+        })
+
         --[[
+        lspconfig.fennel_ls.setup({
+            capabilities = capabilities,
+            settings = {
+                ["fennel-ls"] = {
+                    ["checks"] = {
+                        ["unknown-module-field"] = false,
+                    },
+                },
+            }
+        })
+
         lspconfig.metals.setup({
             capabilities = capabilities,
         })
@@ -73,11 +106,23 @@ return {
         vim.keymap.set('n', '<S-Right>', vim.diagnostic.goto_next)
         vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
+
+        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('UserLspConfig', {}),
             callback = function(ev)
+                vim.api.nvim_clear_autocmds({ group = augroup, buffer = ev.buf })
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    group = augroup,
+                    buffer = ev.buf,
+                    callback = function()
+                        vim.lsp.buf.format({ async = true })
+                    end,
+                })
+
                 -- Enable completion triggered by <c-x><c-o>
                 vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
@@ -104,9 +149,6 @@ return {
 
                 vim.keymap.set('n', '<C-r>', vim.lsp.buf.rename, opts)
                 vim.keymap.set({ 'n', 'v' }, '<C-a>', vim.lsp.buf.code_action, opts)
-                vim.keymap.set('n', '<C-o>', function()
-                    vim.lsp.buf.format({ async = true })
-                end, opts)
             end,
         })
     end,

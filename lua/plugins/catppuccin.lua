@@ -1,6 +1,7 @@
 return {
     'catppuccin/nvim',
     name = 'catppuccin',
+    enabled = true,
     priority = 1000,
     opts = {
         flavour = 'mocha',
@@ -9,13 +10,13 @@ return {
             return {
                 Cursor = { fg = colors.sapphire },
                 CursorLineNR = { fg = colors.sapphire },
-                Keyword = { fg = colors.red, bold = true, },
+                Keyword = { fg = "#FF6188", bold = true, },
                 Statement = { fg = colors.red, bold = true, },
                 Type = { fg = colors.sky, },
                 Structure = { fg = colors.sky },
                 Conditional = { fg = colors.red, bold = true, },
                 String = { fg = colors.yellow },
-                Function = { fg = colors.green },
+                Function = { fg = "#A9DC76" },
                 Constant = { fg = colors.blue, bold = true },
             }
         end,
