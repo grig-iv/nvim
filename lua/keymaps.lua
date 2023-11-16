@@ -1,5 +1,7 @@
 local map = require('utils').map
 
+-- TODO add which key just for documenting purpose
+
 -- nopes
 map('', '^', '<Nop>')
 map('', '$', '<Nop>')
@@ -29,13 +31,13 @@ map('', '<C-Right>', 'W')
 
 map('', '<Home>', '^')
 map('', '<End>', 'g_')
-map({'n', 'v'}, '<S-Home>', 'g0')
+map({ 'n', 'v' }, '<S-Home>', 'g0')
 map('', '<S-End>', 'g$')
 
 map('', '<PageUp>', '<C-u>')
 map('', '<PageDown>', '<C-d>')
-map('', '<S-PageUp>', '<C-b>')
-map('', '<S-PageDown>', '<C-f>')
+map('', '<C-S-PageUp>', '<C-b>')
+map('', '<C-S-PageDown>', '<C-f>')
 map('', '<C-PageUp>', 'gg')
 map('', '<C-PageDown>', 'G')
 
@@ -64,30 +66,25 @@ map('n', 'yx', 'yl')
 -- buffers
 map('n', '<C-Tab>', '<Cmd>bn<Cr>')
 map('n', '<S-C-Tab>', '<Cmd>bp<Cr>')
-
 map('n', '<C-w>', '<Cmd>bd<Cr>')
 
--- rework X key
-map('n', 'xu', 'gUl')
-map('n', 'xl', 'gul')
-map('n', 'xi', '<C-a>')
-map('n', 'xd', '<C-x>')
-
 -- enhance
-map('n', '<C-q>', '<Cmd>xa<Cr>')
-map('n', '<C-S-q>', '<Cmd>wa<Cr><Cmd>qa!<Cr>')
-map('n', '<C-s>', '<Cmd>wa<Cr>')
-map('n', 'Q', '@q')
-map('n', 'Y', 'y$')
-map('n', 'U', '<C-r>')
+map('n', '<C-q>', '<Cmd>xa<Cr>')   -- save and exit
+map('n', '<C-S-q>', '<Cmd>wa<Cr><Cmd>qa!<Cr>') -- force exit
+map('n', 'Q', '@q')                -- perform mackro saved on "q"
+map('n', 'Y', 'y$')                -- yank to the EOL
+map('n', 'U', '<C-r>')             -- redo
 map('', '<C-y>', '"+y')
 map('', '<C-p>', '"+p')
 
-map('n', 'j', 'J')
-map('n', 'J', 'kJ')
+map('n', '<S-PageUp>', '<C-a>gUl')   -- increment number or upper char under cursor
+map('n', '<S-PageDown>', '<C-x>gul') -- decrement number or lower char under cursor
 
-map('', '<C-,>', 'F.')
-map('', '<C-.>', 'f.')
+map('n', 'j', 'J')                   -- join next line
+map('n', 'J', 'kJ')                  -- join previous line
+
+map('', '<C-,>', 'F.')               -- jump to previous dot in line
+map('', '<C-.>', 'f.')               -- jump to next dot in line
 
 map('', '<C-S-s>', '<Esc><Cmd>w<CR>')
 map('n', '<Tab>', '<C-^>')
