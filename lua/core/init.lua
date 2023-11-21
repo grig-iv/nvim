@@ -5,5 +5,5 @@ local function merge_tables(t1, t2)
   end
   return t1
 end
-local options = require("frame.options")
+local options = require("core.options")
 return merge_tables({}, options)

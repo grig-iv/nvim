@@ -1,5 +1,5 @@
 require('tangerine-bootstrap')
 require('options')
 require('keymaps')
-require('autocmds')
+require('events')
 require('plugin_manager')

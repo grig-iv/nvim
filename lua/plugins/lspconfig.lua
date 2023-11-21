@@ -119,7 +119,7 @@ return {
                     group = augroup,
                     buffer = ev.buf,
                     callback = function()
-                        vim.lsp.buf.format({ async = true })
+                        vim.lsp.buf.format()
                     end,
                 })
 

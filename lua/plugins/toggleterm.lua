@@ -4,7 +4,7 @@ return
     version = "*",
     event = { 'VeryLazy' },
     opts = {
-        open_mapping = "<C-Enter>",
+        open_mapping = "<Cr>",
         close_on_exit = true,
     }
 }
