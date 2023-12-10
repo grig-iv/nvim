@@ -41,9 +41,9 @@ return {
         dependencies = { 'nvim-lua/plenary.nvim' },
         cmd = 'Telescope',
         keys = {
-            { '<C-f>',   telescope('files'),             desc = 'Find files' },
-            { '<C-S-f>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' },
-            { 't',       '<cmd>Telescope<cr>',           desc = 'Telescope' },
+            { '<C-f>', telescope('files'),             desc = 'Find files' },
+            { '<C-g>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' },
+            { 't',     '<cmd>Telescope<cr>',           desc = 'Telescope' },
         },
     },
     {

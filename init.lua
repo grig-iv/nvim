@@ -1,4 +1,3 @@
-require('tangerine-bootstrap')
 require('options')
 require('keymaps')
 require('events')

@@ -61,6 +61,10 @@ return {
             capabilities = capabilities,
         })
 
+        lspconfig.glsl_analyzer.setup({
+            capabilities = capabilities,
+        })
+
         lspconfig.fennel_language_server.setup({
             capabilities = capabilities,
             settings = {

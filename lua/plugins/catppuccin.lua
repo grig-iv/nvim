@@ -6,6 +6,7 @@ return {
     opts = {
         flavour = 'mocha',
         term_colors = true,
+        transparent_background = true,
         custom_highlights = function(colors)
             return {
                 Cursor = { fg = colors.sapphire },

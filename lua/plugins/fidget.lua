@@ -5,6 +5,9 @@ return {
     opts = {
         text = {
             spinner = "dots_pulse"
-        }
+        },
+        window = {
+            blend = 0, -- transparent background
+        },
     },
 }

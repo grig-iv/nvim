@@ -41,16 +41,17 @@ map('', '<C-S-PageDown>', '<C-f>')
 map('', '<C-PageUp>', 'gg')
 map('', '<C-PageDown>', 'G')
 
-map('n', '<Backspace>', '<C-o>')
-map('n', '<Space>', '<C-i>')
+map('n', '<F19>', '<C-o>')
+map('n', '<F22>', '<C-i>')
 
--- pane navigation
-map('n', '<Leader>|', '<C-w>v')
-map('n', '<Leader>-', '<C-w>s')
+-- panes
+map('n', '<Leader>v', '<C-w>v')
+map('n', '<Leader>h', '<C-w>s')
 map('n', '<M-Left>', '<C-w>h')
 map('n', '<M-Up>', '<C-w>k')
 map('n', '<M-Down>', '<C-w>j')
 map('n', '<M-Right>', '<C-w>l')
+map('n', '<C-q>', '<Cmd>wa<Cr><C-w>q')
 
 -- removing double click
 map('n', 'dd', '<Nop>')
@@ -66,11 +67,9 @@ map('n', 'yx', 'yl')
 -- buffers
 map('n', '<C-Tab>', '<Cmd>bn<Cr>')
 map('n', '<S-C-Tab>', '<Cmd>bp<Cr>')
-map('n', '<C-w>', '<Cmd>bd<Cr>')
 
 -- enhance
 map('n', '<C-s>', '<Cmd>wa<Cr>')               -- save
-map('n', '<C-q>', '<Cmd>xa<Cr>')               -- save and exit
 map('n', '<C-S-q>', '<Cmd>wa<Cr><Cmd>qa!<Cr>') -- force exit
 map('n', 'Q', '@q')                            -- perform mackro saved on "q"
 map('n', 'Y', 'y$')                            -- yank to the EOL
