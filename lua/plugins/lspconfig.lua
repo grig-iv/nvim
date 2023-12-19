@@ -49,6 +49,19 @@ return {
             },
         })
 
+        lspconfig.pylsp.setup {
+            capabilities = capabilities,
+            -- settings = {
+            --     pylsp = {
+            --         plugins = {
+            --             pycodestyle = {
+            --                 ignore = { 'W391' },
+            --                 maxLineLength = 100
+            --             }
+            --         }
+            --     }
+            -- }
+        }
         lspconfig.clojure_lsp.setup({
             capabilities = capabilities,
         })

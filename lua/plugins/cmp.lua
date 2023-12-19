@@ -2,15 +2,12 @@ return {
     'hrsh7th/nvim-cmp', -- Autocompletion plugin
     event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp',       -- Autocompletion with LSPs
-        'hrsh7th/cmp-buffer',         -- Autocompletion from words in buffer
-        'hrsh7th/cmp-path',           -- Autocompletion from files
-        'hrsh7th/cmp-cmdline',        -- Autocompletion for nvim commands
+        'hrsh7th/cmp-nvim-lsp',   -- Autocompletion with LSPs
+        'hrsh7th/cmp-buffer',     -- Autocompletion from words in buffer
+        'hrsh7th/cmp-path',       -- Autocompletion from files
+        'hrsh7th/cmp-cmdline',    -- Autocompletion for nvim commands
 
-        "PaterJason/cmp-conjure",     --conjure
-
-        'L3MON4D3/LuaSnip',
-        'saadparwaiz1/cmp_luasnip', -- Snippets autocompletion
+        "PaterJason/cmp-conjure", --conjure
     },
     config = function()
         local cmp = require('cmp')
@@ -32,13 +29,7 @@ return {
                     },
                 },
                 { name = 'path' },
-                { name = 'luasnip' },
             }),
-            snippet = {
-                expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
-                end,
-            },
         })
     end,
 }

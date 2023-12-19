@@ -1,1 +1,3 @@
-{1 :tzachar/local-highlight.nvim :opts {:hlgroup :Underlined}}
+{1 :tzachar/local-highlight.nvim
+ :event :BufReadPost
+ :opts {:hlgroup :Underlined}}

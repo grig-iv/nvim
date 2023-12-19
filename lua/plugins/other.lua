@@ -3,4 +3,4 @@ local function _1_(_241, _242)
   local other = require("other-nvim")
   return other.setup(_242)
 end
-return {"rgroli/other.nvim", config = _1_, opts = {mappings = {{pattern = "/fnl/(.*)/(.*).fnl$", target = "/lua/%1/%2.lua"}}}}
+return {"rgroli/other.nvim", event = "VeryLazy", config = _1_, opts = {mappings = {{pattern = "/fnl/(.*)/(.*).fnl$", target = "/lua/%1/%2.lua"}}}}

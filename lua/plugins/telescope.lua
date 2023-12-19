@@ -42,7 +42,7 @@ return {
         cmd = 'Telescope',
         keys = {
             { '<C-f>', telescope('files'),             desc = 'Find files' },
-            { '<C-g>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' },
+            { '<C-/>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' },
             { 't',     '<cmd>Telescope<cr>',           desc = 'Telescope' },
         },
     },
