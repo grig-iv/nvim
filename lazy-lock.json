@@ -37,6 +37,7 @@
   "other.nvim": { "branch": "main", "commit": "d4d926dec6d0e037c1a5f092793b474947ed357e" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "rainbow": { "branch": "master", "commit": "61f719aebe0dc5c3048330c50db72cfee1afdd34" },
+  "rust-tools.nvim": { "branch": "master", "commit": "0cc8adab23117783a0292a0c8a2fbed1005dc645" },
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
   "telescope.nvim": { "branch": "master", "commit": "54930e1abfc94409e1bb9266e752ef8379008592" },
   "tmux.nvim": { "branch": "main", "commit": "ea67d59721eb7e12144ce2963452e869bfd60526" },

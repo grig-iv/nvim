@@ -67,5 +67,6 @@ return {
         vim.api.nvim_set_hl(0, '@lsp.mod.defaultLibrary', { link = "Constant" })
 
         vim.api.nvim_set_hl(0, '@variable.builtin', { link = "Constant" })
+        vim.api.nvim_set_hl(0, '@function.builtin', { link = "Function" })
     end,
 }

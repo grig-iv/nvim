@@ -2,14 +2,16 @@
 local vim = _G.vim
 local api = _G.vim.api
 local group = api.nvim_create_augroup("conjure", {clear = false})
-local function disable_repl_lsp()
-  local function _1_()
-    return vim.diagnostic.disable(0)
+local function setup_repl_buf()
+  local function setup()
+    print("yo")
+    vim.diagnostic.disable(0)
+    return vim.api.nvim_win_set_option(0, "wrap", true)
   end
-  return api.nvim_create_autocmd("BufNewFile", {group = group, pattern = {"conjure-log-*"}, callback = _1_, desc = "Conjure Log disable LSP diagnostics"})
+  return api.nvim_create_autocmd("BufReadPost", {group = group, pattern = {"conjure-log-*"}, callback = setup, desc = "Conjure Log disable LSP diagnostics"})
 end
-local function _2_()
+local function _1_()
   do end (require("conjure.main")).main()
-  return disable_repl_lsp()
+  return setup_repl_buf()
 end
-return {"Olical/conjure", ft = {"clojure", "fennel"}, config = _2_}
+return {"Olical/conjure", ft = {"clojure", "fennel", "rust"}, config = _1_}
