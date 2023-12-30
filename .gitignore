@@ -1,3 +1,5 @@
+.luarc.json
+
 tt.*
 .tests
 doc/tags
