@@ -1,4 +1,4 @@
 require('options')
 require('keymaps')
-require('events')
+require('autocmds')
 require('plugin_manager')
