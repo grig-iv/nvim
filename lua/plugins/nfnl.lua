@@ -1,1 +1,4 @@
-return {"Olical/nfnl", ft = "fennel"}
+return {
+    "Olical/nfnl",
+    ft = "fennel"
+}

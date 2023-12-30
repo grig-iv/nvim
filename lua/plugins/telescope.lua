@@ -1,3 +1,4 @@
+local vim = _G.vim
 local get_root = require('utils').get_root
 
 -- this will return a function that calls telescope.
@@ -22,7 +23,7 @@ local function telescope(builtin, opts)
                 map('i', '<a-c>', function()
                     local action_state = require('telescope.actions.state')
                     local line = action_state.get_current_line()
-                    M.telescope(
+                    telescope(
                         params.builtin,
                         vim.tbl_deep_extend('force', {}, params.opts or {}, { cwd = false, default_text = line })
                     )()
@@ -42,11 +43,12 @@ return {
         cmd = 'Telescope',
         keys = {
             { '<C-f>', telescope('files'),             desc = 'Find files' },
-            { '<C-/>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' },
+            { '<C-_>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' }, -- in therminal <C-/> interpreting as <C-_>
             { 't',     '<cmd>Telescope<cr>',           desc = 'Telescope' },
         },
     },
     {
+        -- FIXME
         'nvim-telescope/telescope-frecency.nvim',
         dependencies = { 'kkharji/sqlite.lua' },
         enabled = false,

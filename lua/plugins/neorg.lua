@@ -1,6 +1,11 @@
+local vim = _G.vim
+
 return {
     'nvim-neorg/neorg',
-    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-treesitter/nvim-treesitter'
+    },
     build = ':Neorg sync-parsers',
     ft = 'norg',
     cmd = 'Neorg',
