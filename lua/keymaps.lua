@@ -69,7 +69,7 @@ map('n', '<C-Tab>', '<Cmd>bn<Cr>')
 map('n', '<S-C-Tab>', '<Cmd>bp<Cr>')
 
 -- enhance
-map('n', '<C-s>', '<Cmd>wa<Cr>')               -- save
+map('n', '<C-s>', '<Cmd>silent wa<Cr>')        -- save
 map('n', '<C-S-q>', '<Cmd>wa<Cr><Cmd>qa!<Cr>') -- force exit
 map('n', 'Q', '@q')                            -- perform mackro saved on "q"
 map('n', 'Y', 'y$')                            -- yank to the EOL
