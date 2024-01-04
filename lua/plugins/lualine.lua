@@ -1,14 +1,14 @@
 local function repl_component()
-    return "REPL"
+    return 'REPL'
 end
 
 local function on_click(...)
-    print("yo")
+    print('under development')
 end
 
 -- TODO syncthing status integration
 return {
-    "nvim-lualine/lualine.nvim",
+    'nvim-lualine/lualine.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
     opts = {
         options = {
@@ -23,7 +23,7 @@ return {
                 path = 1,
                 newfile_status = true,
                 symbols = {
-                    modified = '󰧞',
+                    modified = '',
                     readonly = '󰌾',
                     unnamed = '[No Name]',
                     newfile = '[New]',
@@ -36,7 +36,7 @@ return {
                         return 'REPL'
                     end,
                     on_click = function()
-                        print("yo")
+                        print('yo')
                     end
                 },
             },
@@ -44,7 +44,7 @@ return {
         }
     },
     config = function(_, opts)
-        require("lualine").setup(opts)
+        require('lualine').setup(opts)
         vim.opt.showmode = false -- disable "--INSERT--" notification in command line
     end,
 }

@@ -3,10 +3,10 @@ local function servers_setup()
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     local server_list = {
-        "lua_ls",
-        "fennel_language_server",
-        "nil_ls",
-        "clojure_lsp",
+        'lua_ls',
+        'fennel_language_server',
+        'nil_ls',
+        'clojure_lsp',
         -- "gopls",
         -- "ocamllsp",
         -- "metals",
@@ -50,10 +50,10 @@ local function servers_setup()
 end
 
 local function icons_setup()
-    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    local signs = { Error = '󰅚 ', Warn = ' ', Hint = ' ', Info = ' ' }
     for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        local hl = 'DiagnosticSign' .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
     end
 end
 
@@ -80,7 +80,7 @@ return {
             vim.keymap.set('n', '<S-Right>', vim.diagnostic.goto_next)
             vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+            local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
@@ -88,7 +88,7 @@ return {
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
                 callback = function(ev)
                     vim.api.nvim_clear_autocmds({ group = augroup, buffer = ev.buf })
-                    vim.api.nvim_create_autocmd("BufWritePre", {
+                    vim.api.nvim_create_autocmd('BufWritePre', {
                         group = augroup,
                         buffer = ev.buf,
                         callback = function()
@@ -100,7 +100,7 @@ return {
                     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
                     -- Enable signcolumn for lsp icons in gutter (for removing twitches)
-                    vim.wo.signcolumn = "yes"
+                    vim.wo.signcolumn = 'yes'
 
                     -- Buffer local mappings.
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
