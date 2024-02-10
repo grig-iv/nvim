@@ -21,7 +21,7 @@ local function servers_setup()
                 Lua = {
                     workspace = {
                         checkThirdParty = false,
-                    }
+                    },
                 },
                 fennel = {
                     workspace = {

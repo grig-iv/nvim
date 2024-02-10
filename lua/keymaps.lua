@@ -42,7 +42,9 @@ map('', '<C-PageUp>', 'gg')
 map('', '<C-PageDown>', 'G')
 
 map('n', '<F19>', '<C-o>')
-map('n', '<F22>', '<C-i>')
+map('n', '<F22>', '<Cmd>execute "normal! \\<C-i>"<CR>')
+
+map('n', '<Tab>', '<C-^>') -- alternate with perv buffer
 
 -- panes
 map('n', '<Leader>v', '<C-w>v')
@@ -87,4 +89,3 @@ map('', '<C-,>', 'F.')               -- jump to previous dot in line
 map('', '<C-.>', 'f.')               -- jump to next dot in line
 
 map('', '<C-S-s>', '<Esc><Cmd>w<CR>')
-map('n', '<Tab>', '<C-^>')
