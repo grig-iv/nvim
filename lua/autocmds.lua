@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd('FocusLost', {
     pattern = '*',
     callback = function()
         if vim.fn.bufname('%') ~= '' and vim.api.nvim_buf_get_option(0, 'buftype') == '' then
-            vim.api.nvim_command(':wa')
+            vim.api.nvim_command(':silent wa')
         end
     end,
     desc = 'Highlight on yank'
