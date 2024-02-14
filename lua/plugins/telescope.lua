@@ -39,24 +39,19 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.3',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'smartpde/telescope-recent-files',
+        },
         cmd = 'Telescope',
         keys = {
-            { '<C-f>', telescope('files'),             desc = 'Find files' },
-            { '<C-_>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' }, -- in therminal <C-/> interpreting as <C-_>
-            { 't',     '<cmd>Telescope<cr>',           desc = 'Telescope' },
+            { '<C-f>', telescope('files'),                                                 desc = 'Find files' },
+            { '<C-_>', '<cmd>Telescope live_grep<cr>',                                     desc = 'Find text in files' }, -- in therminal <C-/> interpreting as <C-_>
+            { 't',     '<cmd>Telescope<cr>',                                               desc = 'Telescope' },
+            { '<C-t>', '<cmd>lua require("telescope").extensions.recent_files.pick()<CR>', desc = 'Find files' },
         },
-    },
-    {
-        -- FIXME
-        'nvim-telescope/telescope-frecency.nvim',
-        dependencies = { 'kkharji/sqlite.lua' },
-        enabled = false,
         config = function()
-            require('telescope').load_extension('frecency')
-        end,
-        keys = {
-            { '<C-s>', '<cmd>Telescope frecency<cr>', desc = 'Switch to resent files' },
-        },
+            require('telescope').load_extension('recent_files')
+        end
     },
 }

@@ -10,9 +10,11 @@ return {
         'PaterJason/cmp-conjure',   -- conjure
         'L3MON4D3/LuaSnip',         -- lua snip
         'saadparwaiz1/cmp_luasnip', -- lua snip
+        'onsails/lspkind.nvim',     -- vscode-like pictograms
     },
     config = function()
         local cmp = require('cmp')
+        local lspkind = require('lspkind')
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -41,6 +43,9 @@ return {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
             },
+            formatting = {
+                format = lspkind.cmp_format()
+            }
         })
     end,
 }
