@@ -45,10 +45,16 @@ return {
         },
         cmd = 'Telescope',
         keys = {
-            { '<C-f>', telescope('files'),                                                 desc = 'Find files' },
-            { '<C-_>', '<cmd>Telescope live_grep<cr>',                                     desc = 'Find text in files' }, -- in therminal <C-/> interpreting as <C-_>
-            { 't',     '<cmd>Telescope<cr>',                                               desc = 'Telescope' },
-            { '<C-t>', '<cmd>lua require("telescope").extensions.recent_files.pick()<CR>', desc = 'Find files' },
+            { '<C-f>', telescope('files'),             desc = 'Find files' },
+            { '<C-_>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files' }, -- in therminal <C-/> interpreting as <C-_>
+            { 't',     '<cmd>Telescope<cr>',           desc = 'Telescope' },
+            {
+                '<C-t>',
+                function()
+                    require('telescope').extensions.recent_files.pick({ only_cwd = true })
+                end,
+                desc = 'Find files'
+            },
         },
         config = function()
             require('telescope').load_extension('recent_files')
