@@ -21,6 +21,7 @@ vim.api.nvim_create_autocmd('FocusLost', {
 -- clear jump list on start
 vim.api.nvim_create_autocmd('VimEnter', {
     pattern = '*',
+    once = true,
     callback = function()
         vim.cmd('tabdo windo clearjumps')
     end,
