@@ -21,9 +21,8 @@ return {
                 vim.api.nvim_win_set_option(win, 'conceallevel', 2)
                 vim.api.nvim_win_set_option(win, 'wrap', true)
 
-                vim.keymap.set('n', 'gi', '<cmd>e index.norg<cr>', { buffer = buf })
-                vim.keymap.set('n', 'gh', '<cmd>e home/index.norg<cr>', { buffer = buf })
-                vim.keymap.set('n', 'gf', '<cmd>e free-time/index.norg<cr>', { buffer = buf })
+                vim.keymap.set('n', 'gh', '<cmd>e index.norg<cr>', { buffer = buf })
+                vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.norg<cr>', { buffer = buf })
                 vim.keymap.set('n', 'gw', '<cmd>e work/index.norg<cr>', { buffer = buf })
 
                 vim.keymap.set('n', '<Leader>tc', '<cmd>Neorg toggle-concealer<cr>', { buffer = buf })
