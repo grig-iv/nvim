@@ -32,6 +32,7 @@ return {
     opts = {
         load = {
             ['core.defaults'] = {},
+            ['core.export'] = {},
             ['core.concealer'] = {
                 config = {
                     folds = false,
