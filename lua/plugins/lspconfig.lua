@@ -4,7 +4,7 @@ local function servers_setup()
 
     local server_list = {
         'lua_ls',
-        'fennel_language_server',
+        'fennel_language_server', -- TODO remove
         'nil_ls',
         'clojure_lsp',
         -- "gopls",

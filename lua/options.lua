@@ -2,7 +2,7 @@ local opt = _G.vim.opt
 
 opt.number = true             -- show line numbers
 opt.relativenumber = true     -- enable relative line numbers
-opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+opt.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
 opt.scrolloff = 5             -- lead scroll by 8 lines
 
 opt.ignorecase = true         -- always case-insensitive
@@ -22,11 +22,12 @@ opt.swapfile = false          -- create swap file
 opt.wrap = false              -- do not wrap long lines
 opt.updatetime = 100          -- faster completion
 opt.cursorline = true         -- highlight cursor line
-opt.spelllang = "en_us"       -- use en_us to spellcheck
-opt.mouse = "a"               -- allow the mouse to be used in neovim
+opt.spelllang = 'en_us'       -- use en_us to spellcheck
+opt.mouse = 'a'               -- allow the mouse to be used in neovim
 opt.termguicolors = true      -- enable highlight groups
+opt.conceallevel = 2
 
 local g = _G.vim.g
 
-g.mapleader = " "      -- space as leader key
-g.maplocalleader = "/" -- fowardslash as local leader key
+g.mapleader = ' '      -- space as leader key
+g.maplocalleader = '/' -- fowardslash as local leader key
