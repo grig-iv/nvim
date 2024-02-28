@@ -30,16 +30,7 @@ return {
                 }
             } },
             lualine_x = { 'diagnostics' },
-            lualine_y = {
-                {
-                    function()
-                        return 'REPL'
-                    end,
-                    on_click = function()
-                        print('yo')
-                    end
-                },
-            },
+            lualine_y = { 'diff' },
             lualine_z = { 'location' }
         }
     },

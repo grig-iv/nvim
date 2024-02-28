@@ -12,6 +12,26 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- open plugins github pages
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    pattern = '*/nvim/lua/plugins/*.lua',
+    callback = function()
+        vim.keymap.set(
+            'n',
+            'gg',
+            function()
+                local line = vim.api.nvim_get_current_line()
+                local github_uri = line:match("'.*'")
+                if github_uri ~= nil then
+                    local utils = require('utils')
+                    utils.open_link('https://github.com/' .. github_uri:sub(2, -2))
+                end
+            end,
+            { buffer = true }
+        )
+    end,
+})
+
 -- plugins
 require('lazy').setup('plugins', {
     defaults = { cond = not vim.g.vscode },

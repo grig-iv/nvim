@@ -1,11 +1,30 @@
 local M = {}
 
+
+M.is_wsl_host = vim.fn.system('uname -r'):find('wsl') ~= nil
+
 function M.map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
+    local options = { silent = true, noremap = true }
     if opts then
         options = vim.tbl_extend('force', options, opts)
     end
     vim.keymap.set(mode, lhs, rhs, options)
+end
+
+function M.open_link(url)
+    if M.is_wsl then
+        vim.fn.jobstart({ 'cmd.exe /C start', url })
+    else
+        vim.fn.jobstart({ 'xdg-open', url })
+    end
+end
+
+function M.char_under_cursor_is_digit()
+    local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+    return vim.api
+        .nvim_get_current_line()
+        :sub(col, col)
+        :match('%d')
 end
 
 -- returns the root directory based on:
@@ -24,9 +43,9 @@ function M.get_root()
         for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
             local workspace = client.config.workspace_folders
             local paths = workspace
-                    and vim.tbl_map(function(ws)
-                        return vim.uri_to_fname(ws.uri)
-                    end, workspace)
+                and vim.tbl_map(function(ws)
+                    return vim.uri_to_fname(ws.uri)
+                end, workspace)
                 or client.config.root_dir and { client.config.root_dir }
                 or {}
             for _, p in ipairs(paths) do

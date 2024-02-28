@@ -1,4 +1,5 @@
-local map = require('utils').map
+local utils = require('utils')
+local map = utils.map
 
 -- TODO add which key just for documenting purpose
 
@@ -79,13 +80,28 @@ map('n', 'U', '<C-r>')                         -- redo
 map('', '<C-y>', '"+y')
 map('', '<C-p>', '"+p')
 
-map('n', '<S-PageUp>', '<C-a>gUl')   -- increment number or upper char under cursor
-map('n', '<S-PageDown>', '<C-x>gul') -- decrement number or lower char under cursor
+map('n', 'j', 'J')     -- join next line
+map('n', 'J', 'kJ')    -- join previous line
 
-map('n', 'j', 'J')                   -- join next line
-map('n', 'J', 'kJ')                  -- join previous line
-
-map('', '<C-,>', 'F.')               -- jump to previous dot in line
-map('', '<C-.>', 'f.')               -- jump to next dot in line
+map('', '<C-,>', 'F.') -- jump to previous dot in line
+map('', '<C-.>', 'f.') -- jump to next dot in line
 
 map('', '<C-S-s>', '<Esc><Cmd>w<CR>')
+
+-- increment number or upper char under cursor
+map('n', '<S-PageUp>', function()
+    if utils.char_under_cursor_is_digit() then
+        return '<C-a>'
+    else
+        return 'gUL'
+    end
+end, { expr = true })
+
+-- decrement number or lower char under cursor
+map('n', '<S-PageDown>', function()
+    if utils.char_under_cursor_is_digit() then
+        return '<C-x>'
+    else
+        return 'gul'
+    end
+end, { expr = true })

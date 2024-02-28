@@ -1,10 +1,10 @@
-local function fold_properties(buf)
+local function fold_properties()
     -- if properties already folded then return
     if vim.fn.foldclosed(1) ~= -1 then
         return
     end
 
-    local lines = vim.api.nvim_buf_get_lines(buf, 1, -1, false)
+    local lines = vim.api.nvim_buf_get_lines(0, 1, -1, false)
     for i, line in ipairs(lines) do
         if line:match('^%-%-%-') then
             vim.api.nvim_command('1,' .. (i + 1) .. 'fold')
@@ -27,6 +27,15 @@ return {
                 path = '~/Extended Mind/',
             },
         },
+        ui = {
+            checkboxes = {
+                [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
+                ['x'] = { char = '', hl_group = 'ObsidianDone' },
+                ['_'] = { char = '󰩹', hl_group = 'ObsidianTodo' },
+                ['='] = { char = '󰏤', hl_group = 'ObsidianTodo' },
+                ['~'] = { char = '󰋖', hl_group = 'ObsidianTodo' },
+            },
+        },
         disable_frontmatter = false,
         note_frontmatter_func = function(note)
             if note.title then
@@ -47,7 +56,7 @@ return {
             return tostring(title)
         end,
         follow_url_func = function(url)
-            vim.fn.jobstart({ 'xdg-open', url })
+            require('utils').open_link(url)
         end,
         mappings = {
             ['<Enter>'] = {
@@ -65,16 +74,14 @@ return {
     config = function(_, opts)
         require('obsidian').setup(opts)
 
-        vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+        vim.api.nvim_create_autocmd('BufWinEnter', {
             pattern = '*.md',
             callback = function()
-                local buf = vim.api.nvim_get_current_buf()
+                vim.keymap.set('n', 'gh', '<cmd>e index.md<cr>', { buffer = true })
+                vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.md<cr>', { buffer = true })
+                vim.keymap.set('n', 'gw', '<cmd>e work/index.md<cr>', { buffer = true })
 
-                vim.keymap.set('n', 'gh', '<cmd>e index.md<cr>', { buffer = buf })
-                vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.md<cr>', { buffer = buf })
-                vim.keymap.set('n', 'gw', '<cmd>e work/index.md<cr>', { buffer = buf })
-
-                fold_properties(buf)
+                fold_properties()
             end,
         })
     end,
