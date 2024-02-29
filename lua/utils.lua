@@ -1,7 +1,7 @@
 local M = {}
 
 
-M.is_wsl_host = vim.fn.system('uname -r'):find('wsl') ~= nil
+M.is_wsl_host = vim.fn.system('uname -r'):find('microsoft') ~= nil
 
 function M.map(mode, lhs, rhs, opts)
     local options = { silent = true, noremap = true }
@@ -12,8 +12,8 @@ function M.map(mode, lhs, rhs, opts)
 end
 
 function M.open_link(url)
-    if M.is_wsl then
-        vim.fn.jobstart({ 'cmd.exe /C start', url })
+    if M.is_wsl_host then
+        vim.fn.jobstart({ 'cmd.exe', '/C start ' .. url })
     else
         vim.fn.jobstart({ 'xdg-open', url })
     end
