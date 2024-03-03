@@ -4,7 +4,6 @@ local function servers_setup()
 
     local server_list = {
         'lua_ls',
-        'fennel_language_server', -- TODO remove
         'nil_ls',
         'clojure_lsp',
         -- "gopls",
@@ -21,14 +20,6 @@ local function servers_setup()
                 Lua = {
                     workspace = {
                         checkThirdParty = false,
-                    },
-                },
-                fennel = {
-                    workspace = {
-                        library = vim.api.nvim_list_runtime_paths(),
-                    },
-                    diagnostics = {
-                        globals = { 'vim', 'awesome' },
                     },
                 },
                 ['nil'] = {

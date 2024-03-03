@@ -13,11 +13,11 @@ end
 
 return {
     'Olical/conjure',
-    ft = { 'clojure', 'fennel', 'rust' },
+    ft = { 'clojure', 'fennel', 'rust', 'lua' },
     config = function()
         require('conjure.main').main()
         repl_buf_setup()
 
-        vim.g["conjure#log#hud#ignore_low_priority"] = false
+        vim.g['conjure#log#hud#ignore_low_priority'] = false
     end,
 }
