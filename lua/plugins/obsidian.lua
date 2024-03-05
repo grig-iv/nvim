@@ -1,13 +1,21 @@
 local function fold_properties()
-    -- if properties already folded then return
-    if vim.fn.foldclosed(1) ~= -1 then
-        return
-    end
-
-    local lines = vim.api.nvim_buf_get_lines(0, 1, -1, false)
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for i, line in ipairs(lines) do
-        if line:match('^%-%-%-') then
-            vim.api.nvim_command('1,' .. (i + 1) .. 'fold')
+        local is_separator = line:match('^%-%-%-')
+        if i == 1 and not is_separator then
+            return
+        elseif i > 1 and is_separator then
+            vim.api.nvim_command('1,' .. i .. 'fold')
+            return
+        end
+    end
+end
+
+local function set_cursor_on_title()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    for i, line in ipairs(lines) do
+        if line:match('.*# ') then
+            vim.api.nvim_win_set_cursor(0, { i, 0 })
             return
         end
     end
@@ -21,20 +29,29 @@ local function follow_link_or_toggle_checkbox()
     end
 end
 
+local function on_buffer_first_enter()
+    vim.keymap.set('n', '<Enter>', follow_link_or_toggle_checkbox, { buffer = true, expr = true })
+    vim.keymap.set('n', 'gr', '<cmd>e index.md<cr>', { buffer = true })
+    vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.md<cr>', { buffer = true })
+    vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true })
+    vim.keymap.set('n', 'gw', '<cmd>e work/index.md<cr>', { buffer = true })
+    vim.keymap.set('n', 'gh', '<cmd>e home.md<cr>', { buffer = true })
+
+    fold_properties()
+    set_cursor_on_title()
+end
+
 local function config(_, opts)
     require('obsidian').setup(opts)
 
+    local opened_buffers = {}
     vim.api.nvim_create_autocmd('BufWinEnter', {
         pattern = '*.md',
-        callback = function()
-            vim.keymap.set('n', '<Enter>', follow_link_or_toggle_checkbox, { buffer = true, expr = true })
-            vim.keymap.set('n', 'gr', '<cmd>e index.md<cr>', { buffer = true })
-            vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.md<cr>', { buffer = true })
-            vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true })
-            vim.keymap.set('n', 'gw', '<cmd>e work/index.md<cr>', { buffer = true })
-            vim.keymap.set('n', 'gh', '<cmd>e home.md<cr>', { buffer = true })
-
-            fold_properties()
+        callback = function(ev)
+            if not vim.tbl_contains(opened_buffers, ev.buf) then
+                table.insert(opened_buffers, ev.buf)
+                on_buffer_first_enter()
+            end
         end,
     })
 end

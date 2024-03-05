@@ -1,12 +1,3 @@
-local function repl_component()
-    return 'REPL'
-end
-
-local function on_click(...)
-    print('under development')
-end
-
--- TODO syncthing status integration
 return {
     'nvim-lualine/lualine.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -30,7 +21,16 @@ return {
                 }
             } },
             lualine_x = { 'diagnostics' },
-            lualine_y = { 'diff' },
+            lualine_y = {
+                {
+                    'diff',
+                    cond = function()
+                        local buf_path = vim.api.nvim_buf_get_name(0)
+                        -- TODO: remove magich string
+                        return vim.fn.count(buf_path, '/Extended Mind/') == 0
+                    end
+                }
+            },
             lualine_z = { 'location' }
         }
     },
