@@ -29,6 +29,8 @@ map('', '<C-Left>', 'B')
 map('', '<C-Up>', '{')
 map('', '<C-Down>', '}')
 map('', '<C-Right>', 'W')
+map('', '<S-Up>', 'ddkP')
+map('', '<S-Down>', 'ddjP')
 
 map('', '<Home>', '^')
 map('', '<End>', 'g_')
@@ -93,7 +95,7 @@ map('n', '<S-PageUp>', function()
     if utils.char_under_cursor_is_digit() then
         return '<C-a>'
     else
-        return 'gUL'
+        return 'gUl'
     end
 end, { expr = true })
 

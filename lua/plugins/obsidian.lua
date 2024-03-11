@@ -31,11 +31,12 @@ end
 
 local function on_buffer_first_enter()
     vim.keymap.set('n', '<Enter>', follow_link_or_toggle_checkbox, { buffer = true, expr = true })
-    vim.keymap.set('n', 'gr', '<cmd>e index.md<cr>', { buffer = true })
+    vim.keymap.set('n', 'gr', '<cmd>cd ~/Extended Mind/<cr><cmd>e index.md<cr>', { buffer = true })
+    vim.keymap.set('n', 'gw', '<cmd>cd ~/Extended Mind/<cr><cmd>e work/index.md<cr>', { buffer = true })
+    vim.keymap.set('n', 'gh', '<cmd>cd ~/Extended Mind/<cr><cmd>e areas/home.md<cr>', { buffer = true })
     vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.md<cr>', { buffer = true })
     vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true })
-    vim.keymap.set('n', 'gw', '<cmd>e work/index.md<cr>', { buffer = true })
-    vim.keymap.set('n', 'gh', '<cmd>e home.md<cr>', { buffer = true })
+    vim.keymap.set('n', 'gy', '<cmd>ObsidianToday -1<cr>', { buffer = true })
 
     fold_properties()
     set_cursor_on_title()
@@ -46,7 +47,7 @@ local function config(_, opts)
 
     local opened_buffers = {}
     vim.api.nvim_create_autocmd('BufWinEnter', {
-        pattern = '*.md',
+        pattern = '*/Extended Mind/*',
         callback = function(ev)
             if not vim.tbl_contains(opened_buffers, ev.buf) then
                 table.insert(opened_buffers, ev.buf)
@@ -92,8 +93,15 @@ return {
                 creation_time = function() return os.date('%Y-%m-%d') end
             }
         },
+        -- image_name_func = function()
+        --     return os.date('%d-%A-')
+        -- end,
+        attachments = {
+            img_folder = '',
+        },
         disable_frontmatter = false,
         note_frontmatter_func = function(note)
+            print(vim.inspect(note))
             if note.title then
                 note:add_alias(note.title)
             end
