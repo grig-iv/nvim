@@ -1,3 +1,8 @@
+local function is_journal_buf()
+    local path = vim.api.nvim_buf_get_name(0)
+    return path:match('/journal/%d%d%d%d/')
+end
+
 local function fold_properties()
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for i, line in ipairs(lines) do
@@ -29,8 +34,16 @@ local function follow_link_or_toggle_checkbox()
     end
 end
 
+local function telescope_default_search()
+    require('telescope.builtin').find_files({
+        cwd = '~/Extended Mind/',
+        find_command = { 'rg', '--files', '-g', '!archives/**', '-g', '*.md', '-g', '*.txt', },
+    })
+end
+
 local function on_buffer_first_enter()
     vim.keymap.set('n', '<Enter>', follow_link_or_toggle_checkbox, { buffer = true, expr = true })
+    vim.keymap.set('n', '<C-f>', telescope_default_search, { buffer = true })
     vim.keymap.set('n', 'gr', '<cmd>cd ~/Extended Mind/<cr><cmd>e index.md<cr>', { buffer = true })
     vim.keymap.set('n', 'gw', '<cmd>cd ~/Extended Mind/<cr><cmd>e work/index.md<cr>', { buffer = true })
     vim.keymap.set('n', 'gh', '<cmd>cd ~/Extended Mind/<cr><cmd>e areas/home.md<cr>', { buffer = true })
@@ -38,7 +51,9 @@ local function on_buffer_first_enter()
     vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true })
     vim.keymap.set('n', 'gy', '<cmd>ObsidianToday -1<cr>', { buffer = true })
 
-    fold_properties()
+    if not is_journal_buf() then
+        fold_properties()
+    end
     set_cursor_on_title()
 end
 
