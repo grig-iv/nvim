@@ -6,7 +6,7 @@ local function servers_setup()
         'lua_ls',
         'nil_ls',
         'clojure_lsp',
-        -- "gopls",
+        'gopls',
         -- "ocamllsp",
         -- "metals",
         -- "hls",
@@ -22,10 +22,9 @@ local function servers_setup()
                         checkThirdParty = false,
                     },
                 },
-                ['nil'] = {
-                    formatting = {
-                        command = { 'alejandra', '--quiet' },
-                    },
+                gopls = {
+                    completeUnimported = true,
+                    usePlaceholders = true,
                 },
                 pylsp = {
                     plugins = {
@@ -34,7 +33,12 @@ local function servers_setup()
                             maxLineLength = 100
                         }
                     }
-                }
+                },
+                ['nil'] = {
+                    formatting = {
+                        command = { 'alejandra', '--quiet' },
+                    },
+                },
             },
         })
     end

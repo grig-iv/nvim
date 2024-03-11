@@ -9,7 +9,14 @@ return {
     opts = {
         sync_install = false,
         auto_install = true,
-        highlight = { enable = false },
-        indent = { enable = true }
+        indent = { enable = true },
+        highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = false,
+            disable = function(lang)
+                local enabled = { 'go' }
+                return not vim.tbl_contains(enabled, lang)
+            end,
+        },
     },
 }
