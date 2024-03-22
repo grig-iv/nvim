@@ -26,8 +26,36 @@ local function set_cursor_on_title()
     end
 end
 
+local function openSxiv(imagePath)
+    local cmd = 'sxiv'
+
+    local handle
+    local stdout = vim.loop.new_pipe(false)
+    local stderr = vim.loop.new_pipe(false)
+
+    local function onExit(code, signal)
+        stdout:close()
+        stderr:close()
+        handle:close()
+
+        if code ~= 0 then
+            print('sxiv exited with code', code, 'and signal', signal)
+        end
+    end
+
+    -- Spawn sxiv with the image path
+    handle = vim.loop.spawn(cmd, {
+        args = { imagePath },
+        stdio = { nil, stdout, stderr },
+    }, onExit)
+end
+
 local function follow_link_or_toggle_checkbox()
-    if require('obsidian').util.cursor_on_markdown_link() then
+    local link_path = require('obsidian').util.parse_cursor_link()
+    if vim.endswith(link_path, '.png') or vim.endswith(link_path, '.jpg') then
+        openSxiv(vim.fn.expand('%:p:h/') .. '/' .. link_path)
+        return nil
+    elseif link_path then
         return '<cmd>ObsidianFollowLink<CR>'
     elseif vim.api.nvim_get_current_line():match('%s*%- %[.%]') then
         return "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>"
@@ -116,7 +144,6 @@ return {
         },
         disable_frontmatter = false,
         note_frontmatter_func = function(note)
-            print(vim.inspect(note))
             if note.title then
                 note:add_alias(note.title)
             end
