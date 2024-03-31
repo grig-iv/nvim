@@ -1,38 +1,102 @@
+local p = require('color_scheme.palette')
+
+local theme = {
+    normal = {
+        a = { bg = p.surface0, fg = p.primary, },
+        b = { bg = 'none', fg = p.text, },
+        c = { bg = 'none', fg = p.text, },
+    },
+    insert = {
+        a = { bg = p.surface0, fg = p.red, },
+        b = { bg = 'none', fg = p.text, },
+        c = { bg = 'none', fg = p.text, },
+    },
+    visual = {
+        a = { bg = p.surface0, fg = p.yellow, },
+        b = { bg = 'none', fg = p.text, },
+        c = { bg = 'none', fg = p.text, },
+    },
+    command = {
+        a = { bg = p.surface0, fg = p.accent, },
+        b = { bg = 'none', fg = p.text, },
+        c = { bg = 'none', fg = p.text, },
+    },
+    inactive = {
+        a = { bg = 'none', fg = p.surface2, },
+        b = { bg = 'none', fg = p.surface2, },
+        c = { bg = 'none', fg = p.surface2, },
+    },
+}
+
+local mode = {
+    'mode',
+    color = { gui = 'bold', },
+}
+
+local filename = {
+    'filename',
+    path = 1,
+    newfile_status = true,
+    symbols = {
+        modified = '',
+        readonly = '󰌾',
+        unnamed = '[No Name]',
+        newfile = '[New]',
+    },
+    separator = '',
+}
+
+local diagnostics = {
+    'diagnostics',
+    padding = { left = 0, right = 1, },
+}
+
+local diff = {
+    'diff',
+    cond = function()
+        local buf_path = vim.api.nvim_buf_get_name(0)
+        -- TODO: remove magich string
+        return vim.fn.count(buf_path, '/Extended Mind/') == 0
+    end,
+    source = function()
+        ---@diagnostic disable-next-line: undefined-field
+        local gitsigns = vim.b.gitsigns_status_dict
+        if gitsigns then
+            return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+            }
+        end
+    end,
+    separator = '',
+}
+
+local branch = {
+    'branch',
+    icon = { '', align = 'right', },
+    padding = { left = 0, right = 1, },
+}
+
 return {
     'nvim-lualine/lualine.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'BufReadPost', 'BufNewFile', },
     opts = {
         options = {
-            section_separators = { left = '', right = '' },
+            section_separators = { left = '', right = '', },
             component_separators = '|',
+            theme = theme,
+            globalstatus = true,
+            always_divide_middle = false,
         },
         sections = {
-            lualine_a = { 'mode' },
-            lualine_b = { 'branch' },
-            lualine_c = { {
-                'filename',
-                path = 1,
-                newfile_status = true,
-                symbols = {
-                    modified = '',
-                    readonly = '󰌾',
-                    unnamed = '[No Name]',
-                    newfile = '[New]',
-                }
-            } },
-            lualine_x = { 'diagnostics' },
-            lualine_y = {
-                {
-                    'diff',
-                    cond = function()
-                        local buf_path = vim.api.nvim_buf_get_name(0)
-                        -- TODO: remove magich string
-                        return vim.fn.count(buf_path, '/Extended Mind/') == 0
-                    end
-                }
-            },
-            lualine_z = { 'location' }
-        }
+            lualine_a = { mode, },
+            lualine_b = { filename, diagnostics, },
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = { diff, branch, },
+        },
     },
     config = function(_, opts)
         require('lualine').setup(opts)

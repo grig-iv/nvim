@@ -1,13 +1,17 @@
 return {
     'j-hui/fidget.nvim',
-    tag = 'legacy',
+    tag = 'v1.0.0',
     event = { 'LspAttach' },
     opts = {
-        text = {
-            spinner = "dots_pulse"
+        progress = {
+            display = {
+                progress_icon = { pattern = 'dots_pulse', period = 1 },
+            },
         },
-        window = {
-            blend = 0, -- transparent background
+        notification = {
+            window = {
+                winblend = 0,
+            },
         },
     },
 }

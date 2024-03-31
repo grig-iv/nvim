@@ -1,3 +1,5 @@
+local colors = require('color_scheme.palette')
+
 return {
     'petertriho/nvim-scrollbar',
     event = { 'BufReadPost' },
@@ -16,6 +18,9 @@ return {
         },
         handlers = {
             cursor = false,
+        },
+        handle = {
+            color = colors.surface2,
         },
     },
 }

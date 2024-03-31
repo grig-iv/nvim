@@ -26,6 +26,7 @@ opt.spelllang = 'en_us'       -- use en_us to spellcheck
 opt.mouse = 'a'               -- allow the mouse to be used in neovim
 opt.termguicolors = true      -- enable highlight groups
 opt.conceallevel = 2
+opt.fillchars = { eob = ' ', }
 
 local g = _G.vim.g
 

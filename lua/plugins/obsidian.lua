@@ -52,7 +52,7 @@ end
 
 local function follow_link_or_toggle_checkbox()
     local link_path = require('obsidian').util.parse_cursor_link()
-    if vim.endswith(link_path, '.png') or vim.endswith(link_path, '.jpg') then
+    if link_path ~= nil and (vim.endswith(link_path, '.png') or vim.endswith(link_path, '.jpg')) then
         openSxiv(vim.fn.expand('%:p:h/') .. '/' .. link_path)
         return nil
     elseif link_path then
@@ -79,6 +79,15 @@ local function on_buffer_first_enter()
     vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true })
     vim.keymap.set('n', 'gy', '<cmd>ObsidianToday -1<cr>', { buffer = true })
 
+    vim.fn.matchadd('Conceal', '^# ', 10, -1)
+    vim.fn.matchadd('Conceal', '^## ', 10, -1)
+    vim.fn.matchadd('Conceal', '^### ', 10, -1)
+    vim.fn.matchadd('Conceal', '^#### ', 10, -1)
+    vim.fn.matchadd('Conceal', '^##### ', 10, -1)
+    vim.fn.matchadd('Conceal', '^###### ', 10, -1)
+    vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ' })
+    vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ' })
+
     if not is_journal_buf() then
         fold_properties()
     end
@@ -98,6 +107,15 @@ local function config(_, opts)
             end
         end,
     })
+
+    require('utils').set_highlights(function(c)
+        return {
+            ObsidianTodo = { fg = c.primary },
+            ObsidianDone = { fg = c.accent },
+            ObsidianRefText = { fg = c.constant, underline = true },
+            ObsidianHighlightText = { bg = c.yellow, fg = c.surface1, italic = true },
+        }
+    end)
 end
 
 return {
