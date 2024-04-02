@@ -10,6 +10,7 @@ require('utils').set_highlights(function(c)
         DiffChange = { fg = c.yellow, },
         DiffDelete = { fg = c.red, },
         ErrorMsg = { fg = c.red, },
+        WarningMsg = { fg = c.yellow, },
         Underlined = { underline = true, },
         Visual = { bg = c.surface1, italic = true, },
         Conceal = {},
@@ -21,6 +22,7 @@ require('utils').set_highlights(function(c)
         Pmenu = { fg = c.text, bg = 'none', },
         FloatBorder = { fg = c.primary, },
         FloatTitle = { fg = c.primary, bold = true, },
+        VertSplit = { fg = c.overlay0, }
 
         -- Syntax
         Keyword = { fg = c.keyword, bold = true, },
@@ -72,12 +74,12 @@ require('utils').set_highlights(function(c)
         nixIntropolationDelimiter = { link = 'Constant', bold = true, },
 
         -- markdown
-        markdownH1 = { fg = c.base, bg = c.red, bold = true, },
-        markdownH2 = { fg = c.red, bold = true, },
-        markdownH3 = { fg = c.red, },
-        markdownH4 = { fg = c.red, italic = true, },
-        markdownH5 = { fg = c.orange, italic = true, },
-        markdownH6 = { fg = c.yellow, italic = true, },
+        markdownH1 = { fg = c.base, bg = c.accent, bold = true, },
+        markdownH2 = { fg = c.accent, bold = true, },
+        markdownH3 = { fg = c.accent, },
+        markdownH4 = { fg = c.accent, italic = true, },
+        markdownH5 = { fg = c.accent, italic = true, },
+        markdownH6 = { fg = c.accent, italic = true, },
         markdownCode = { fg = c.primary, bg = c.surface0, },
     }
 end)
