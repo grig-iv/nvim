@@ -22,7 +22,7 @@ require('utils').set_highlights(function(c)
         Pmenu = { fg = c.text, bg = 'none', },
         FloatBorder = { fg = c.primary, },
         FloatTitle = { fg = c.primary, bold = true, },
-        VertSplit = { fg = c.overlay0, }
+        VertSplit = { fg = c.overlay0, },
 
         -- Syntax
         Keyword = { fg = c.keyword, bold = true, },
