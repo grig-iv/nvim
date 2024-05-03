@@ -20,7 +20,7 @@ local function set_cursor_on_title()
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for i, line in ipairs(lines) do
         if line:match('.*# ') then
-            vim.api.nvim_win_set_cursor(0, { i, 0 })
+            vim.api.nvim_win_set_cursor(0, { i, 0, })
             return
         end
     end
@@ -45,8 +45,8 @@ local function openSxiv(imagePath)
 
     -- Spawn sxiv with the image path
     handle = vim.loop.spawn(cmd, {
-        args = { imagePath },
-        stdio = { nil, stdout, stderr },
+        args = { imagePath, },
+        stdio = { nil, stdout, stderr, },
     }, onExit)
 end
 
@@ -86,8 +86,10 @@ local function on_buffer_first_enter()
     vim.fn.matchadd('Conceal', '^#### ', 10, -1)
     vim.fn.matchadd('Conceal', '^##### ', 10, -1)
     vim.fn.matchadd('Conceal', '^###### ', 10, -1)
-    vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ' })
-    vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ' })
+    vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ', })
+    vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ', })
+    vim.fn.matchadd('Conceal', '^`', 10, -1)
+    vim.fn.matchadd('Conceal', '`$', 10, -1)
 
     if not is_journal_buf() then
         fold_properties()
@@ -111,10 +113,10 @@ local function config(_, opts)
 
     require('utils').set_highlights(function(c)
         return {
-            ObsidianTodo = { fg = c.primary },
-            ObsidianDone = { fg = c.accent },
-            ObsidianRefText = { fg = c.constant, underline = true },
-            ObsidianHighlightText = { bg = c.yellow, fg = c.surface1, italic = true },
+            ObsidianTodo = { fg = c.primary, },
+            ObsidianDone = { fg = c.accent, },
+            ObsidianRefText = { fg = c.constant, underline = true, },
+            ObsidianHighlightText = { bg = c.yellow, fg = c.surface1, italic = true, },
         }
     end)
 end
@@ -136,11 +138,11 @@ return {
         },
         ui = {
             checkboxes = {
-                [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
-                ['x'] = { char = '', hl_group = 'ObsidianDone' },
-                ['_'] = { char = '󰩹', hl_group = 'ObsidianTodo' },
-                ['='] = { char = '󰏤', hl_group = 'ObsidianTodo' },
-                ['~'] = { char = '󰋖', hl_group = 'ObsidianTodo' },
+                [' '] = { char = '󰄱', hl_group = 'ObsidianTodo', },
+                ['x'] = { char = '', hl_group = 'ObsidianDone', },
+                ['_'] = { char = '󰩹', hl_group = 'ObsidianTodo', },
+                ['='] = { char = '󰏤', hl_group = 'ObsidianTodo', },
+                ['~'] = { char = '󰋖', hl_group = 'ObsidianTodo', },
             },
         },
         daily_notes = {
@@ -152,8 +154,8 @@ return {
             subdir = '.templates',
             substitutions = {
                 daily_title = function() return os.date('%A, %B %-d, %Y') end,
-                creation_time = function() return os.date('%Y-%m-%d') end
-            }
+                creation_time = function() return os.date('%Y-%m-%d') end,
+            },
         },
         -- image_name_func = function()
         --     return os.date('%d-%A-')
@@ -167,7 +169,7 @@ return {
                 note:add_alias(note.title)
             end
 
-            local out = { aliases = note.aliases }
+            local out = { aliases = note.aliases, }
 
             if #note.tags ~= 0 then
                 out.tags = note.tags
