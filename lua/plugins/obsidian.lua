@@ -87,6 +87,8 @@ local function on_buffer_first_enter()
     vim.fn.matchadd('Conceal', '^###### ', 10, -1)
     vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ' })
     vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ' })
+    vim.fn.matchadd('Conceal', '^`', 10, -1)
+    vim.fn.matchadd('Conceal', '`$', 10, -1)
 
     if not is_journal_buf() then
         fold_properties()
