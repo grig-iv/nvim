@@ -3,5 +3,5 @@ return {
     event = 'BufReadPost',
     opts = {
         hlgroup = 'Underlined',
-    }
+    },
 }

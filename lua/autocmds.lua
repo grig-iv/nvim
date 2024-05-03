@@ -4,9 +4,9 @@ local vim = _G.vim
 vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
     callback = function()
-        vim.highlight.on_yank { higroup = 'Visual' }
+        vim.highlight.on_yank { higroup = 'Visual', }
     end,
-    desc = 'Highlight on yank'
+    desc = 'Highlight on yank',
 })
 
 -- save on focus lost
@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd('FocusLost', {
             vim.api.nvim_command(':silent wa')
         end
     end,
-    desc = 'Highlight on yank'
+    desc = 'Highlight on yank',
 })
 
 -- clear jump list on start

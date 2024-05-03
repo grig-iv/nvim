@@ -2,7 +2,7 @@ local colors = require('color_scheme.palette')
 
 return {
     'petertriho/nvim-scrollbar',
-    event = { 'BufReadPost' },
+    event = { 'BufReadPost', },
     config = true,
     opts = {
         excluded_buftypes = {

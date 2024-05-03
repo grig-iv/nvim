@@ -13,6 +13,7 @@ local function servers_setup()
         -- "glsl_analyzer",
     }
 
+
     for _, server in ipairs(server_list) do
         lspconfig[server].setup({
             capabilities = capabilities,
@@ -29,14 +30,14 @@ local function servers_setup()
                 pylsp = {
                     plugins = {
                         pycodestyle = {
-                            ignore = { 'W391' },
-                            maxLineLength = 100
-                        }
-                    }
+                            ignore = { 'W391', },
+                            maxLineLength = 100,
+                        },
+                    },
                 },
                 ['nil'] = {
                     formatting = {
-                        command = { 'alejandra', '--quiet' },
+                        command = { 'alejandra', '--quiet', },
                     },
                 },
             },
@@ -45,16 +46,16 @@ local function servers_setup()
 end
 
 local function icons_setup()
-    local signs = { Error = '󰅙 ', Warn = '󰀦 ', Hint = '󰌵 ', Info = '󰋼 ' }
+    local signs = { Error = '󰅙 ', Warn = '󰀦 ', Hint = '󰌵 ', Info = '󰋼 ', }
     for type, icon in pairs(signs) do
         local hl = 'DiagnosticSign' .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '', })
     end
 end
 
 return {
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'BufReadPre', 'BufNewFile', },
     priority = 500,
     dependencies = {
         'folke/neodev.nvim',
@@ -82,7 +83,7 @@ return {
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
                 callback = function(ev)
-                    vim.api.nvim_clear_autocmds({ group = augroup, buffer = ev.buf })
+                    vim.api.nvim_clear_autocmds({ group = augroup, buffer = ev.buf, })
                     vim.api.nvim_create_autocmd('BufWritePre', {
                         group = augroup,
                         buffer = ev.buf,
@@ -99,7 +100,7 @@ return {
 
                     -- Buffer local mappings.
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
-                    local opts = { buffer = ev.buf }
+                    local opts = { buffer = ev.buf, }
                     vim.keymap.set('n', '<Enter>', vim.lsp.buf.definition, opts)
                     vim.keymap.set('n', '<S-Enter>', vim.lsp.buf.implementation, opts)
                     vim.keymap.set('n', '<C-Enter> ', vim.lsp.buf.type_definition, opts)
@@ -116,9 +117,9 @@ return {
                     end, opts)
 
                     vim.keymap.set('n', '<C-r>', vim.lsp.buf.rename, opts)
-                    vim.keymap.set({ 'n', 'v' }, '<C-a>', vim.lsp.buf.code_action, opts)
+                    vim.keymap.set({ 'n', 'v', }, '<C-a>', vim.lsp.buf.code_action, opts)
                 end,
             })
         end,
-    }
+    },
 }

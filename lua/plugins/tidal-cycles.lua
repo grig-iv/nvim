@@ -1,7 +1,7 @@
 return {
     {
         'tidalcycles/vim-tidal',
-        ft = { 'tidal' },
+        ft = { 'tidal', },
         config = function()
             vim.g.tidal_ghci = 'tidal'
 

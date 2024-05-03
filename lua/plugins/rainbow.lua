@@ -1,6 +1,6 @@
 return {
     'hiphish/rainbow-delimiters.nvim',
-    ft = { 'clojure' },
+    ft = { 'clojure', },
     config = function()
         local rainbow_delimiters = require 'rainbow-delimiters'
         require('rainbow-delimiters.setup').setup {

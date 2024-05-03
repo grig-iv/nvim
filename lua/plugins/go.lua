@@ -5,8 +5,8 @@ return {
         'neovim/nvim-lspconfig',
         'nvim-treesitter/nvim-treesitter',
     },
-    event = { 'CmdlineEnter' },
-    ft = { 'go', 'gomod' },
+    event = { 'CmdlineEnter', },
+    ft = { 'go', 'gomod', },
     build = ':lua require("go.install").update_all_sync()',
     config = function()
         require('go').setup()

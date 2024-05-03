@@ -1,6 +1,6 @@
 return {
     'simrat39/rust-tools.nvim',
-    ft = "rust",
+    ft = 'rust',
     dependencies = 'neovim/nvim-lspconfig',
     opts = {
         tools = {
@@ -10,6 +10,6 @@ return {
         },
         server = {
             capabilities = require('cmp_nvim_lsp').default_capabilities(),
-        }
+        },
     },
 }

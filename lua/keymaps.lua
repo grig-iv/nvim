@@ -16,7 +16,7 @@ map('o', 'W', 'iW')
 map('o', '<Leader>w', 'w')
 map('o', '<Leader>W', 'W')
 
-local pairs = { '{}', '()', '[]', '<>' }
+local pairs = { '{}', '()', '[]', '<>', }
 for _, p in ipairs(pairs) do
     map('o', p:sub(1, 1), 'a' .. p:sub(1, 1))
     map('o', p:sub(2, 2), 'i' .. p:sub(2, 2))
@@ -36,7 +36,7 @@ map('', '<S-Down>', 'ddjP')
 
 map('', '<Home>', '^')
 map('', '<End>', 'g_')
-map({ 'n', 'v' }, '<S-Home>', 'g0')
+map({ 'n', 'v', }, '<S-Home>', 'g0')
 map('', '<S-End>', 'g$')
 
 map('', '<PageUp>', '<C-u>')
@@ -99,7 +99,7 @@ map('n', '<S-PageUp>', function()
     else
         return 'gUl'
     end
-end, { expr = true })
+end, { expr = true, })
 
 -- decrement number or lower char under cursor
 map('n', '<S-PageDown>', function()
@@ -108,4 +108,4 @@ map('n', '<S-PageDown>', function()
     else
         return 'gul'
     end
-end, { expr = true })
+end, { expr = true, })

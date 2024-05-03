@@ -27,14 +27,14 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
                     utils.open_link('https://github.com/' .. github_uri:sub(2, -2))
                 end
             end,
-            { buffer = true }
+            { buffer = true, }
         )
     end,
 })
 
 -- plugins
 require('lazy').setup('plugins', {
-    defaults = { cond = not vim.g.vscode },
+    defaults = { cond = not vim.g.vscode, },
     change_detection = {
         notify = false, -- print a notification when changes are found
     },

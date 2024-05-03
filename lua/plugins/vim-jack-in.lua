@@ -1,8 +1,8 @@
 return {
-    "clojure-vim/vim-jack-in",
-    ft = "clojure",
+    'clojure-vim/vim-jack-in',
+    ft = 'clojure',
     dependencies = {
-        "radenling/vim-dispatch-neovim",
-        "tpope/vim-dispatch",
+        'radenling/vim-dispatch-neovim',
+        'tpope/vim-dispatch',
     },
 }

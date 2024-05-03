@@ -5,6 +5,6 @@ return {
             if vim.fn.count(vim.api.nvim_buf_get_name(buf), '/Extended Mind/') > 0 then
                 return false
             end
-        end
+        end,
     },
 }

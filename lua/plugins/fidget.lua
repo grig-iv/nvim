@@ -1,11 +1,11 @@
 return {
     'j-hui/fidget.nvim',
     tag = 'v1.0.0',
-    event = { 'LspAttach' },
+    event = { 'LspAttach', },
     opts = {
         progress = {
             display = {
-                progress_icon = { pattern = 'dots_pulse', period = 1 },
+                progress_icon = { pattern = 'dots_pulse', period = 1, },
             },
         },
         notification = {
