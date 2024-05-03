@@ -20,7 +20,7 @@ local function set_cursor_on_title()
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for i, line in ipairs(lines) do
         if line:match('.*# ') then
-            vim.api.nvim_win_set_cursor(0, { i, 0 })
+            vim.api.nvim_win_set_cursor(0, { i, 0, })
             return
         end
     end
@@ -45,8 +45,8 @@ local function openSxiv(imagePath)
 
     -- Spawn sxiv with the image path
     handle = vim.loop.spawn(cmd, {
-        args = { imagePath },
-        stdio = { nil, stdout, stderr },
+        args = { imagePath, },
+        stdio = { nil, stdout, stderr, },
     }, onExit)
 end
 
@@ -70,14 +70,14 @@ local function telescope_default_search()
 end
 
 local function on_buffer_first_enter()
-    vim.keymap.set('n', '<Enter>', follow_link_or_toggle_checkbox, { buffer = true, expr = true })
-    vim.keymap.set('n', '<C-f>', telescope_default_search, { buffer = true })
-    vim.keymap.set('n', 'gr', '<cmd>cd ~/Extended Mind/<cr><cmd>e index.md<cr>', { buffer = true })
-    vim.keymap.set('n', 'gw', '<cmd>cd ~/Extended Mind/<cr><cmd>e work/index.md<cr>', { buffer = true })
-    vim.keymap.set('n', 'gh', '<cmd>cd ~/Extended Mind/<cr><cmd>e areas/home.md<cr>', { buffer = true })
-    vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.md<cr>', { buffer = true })
-    vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true })
-    vim.keymap.set('n', 'gy', '<cmd>ObsidianToday -1<cr>', { buffer = true })
+    vim.keymap.set('n', '<Enter>', follow_link_or_toggle_checkbox, { buffer = true, expr = true, })
+    vim.keymap.set('n', '<C-f>', telescope_default_search, { buffer = true, })
+    vim.keymap.set('n', 'gr', '<cmd>cd ~/Extended Mind/<cr><cmd>e index.md<cr>', { buffer = true, })
+    vim.keymap.set('n', 'gw', '<cmd>cd ~/Extended Mind/<cr><cmd>e work/index.md<cr>', { buffer = true, })
+    vim.keymap.set('n', 'gh', '<cmd>cd ~/Extended Mind/<cr><cmd>e areas/home.md<cr>', { buffer = true, })
+    vim.keymap.set('n', 'gi', '<cmd>e %:p:h/index.md<cr>', { buffer = true, })
+    vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true, })
+    vim.keymap.set('n', 'gy', '<cmd>ObsidianToday -1<cr>', { buffer = true, })
 
     vim.fn.matchadd('Conceal', '^# ', 10, -1)
     vim.fn.matchadd('Conceal', '^## ', 10, -1)
@@ -85,8 +85,8 @@ local function on_buffer_first_enter()
     vim.fn.matchadd('Conceal', '^#### ', 10, -1)
     vim.fn.matchadd('Conceal', '^##### ', 10, -1)
     vim.fn.matchadd('Conceal', '^###### ', 10, -1)
-    vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ' })
-    vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ' })
+    vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ', })
+    vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ', })
     vim.fn.matchadd('Conceal', '^`', 10, -1)
     vim.fn.matchadd('Conceal', '`$', 10, -1)
 
@@ -112,10 +112,10 @@ local function config(_, opts)
 
     require('utils').set_highlights(function(c)
         return {
-            ObsidianTodo = { fg = c.primary },
-            ObsidianDone = { fg = c.accent },
-            ObsidianRefText = { fg = c.constant, underline = true },
-            ObsidianHighlightText = { bg = c.yellow, fg = c.surface1, italic = true },
+            ObsidianTodo = { fg = c.primary, },
+            ObsidianDone = { fg = c.accent, },
+            ObsidianRefText = { fg = c.constant, underline = true, },
+            ObsidianHighlightText = { bg = c.yellow, fg = c.surface1, italic = true, },
         }
     end)
 end
@@ -137,11 +137,11 @@ return {
         },
         ui = {
             checkboxes = {
-                [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
-                ['x'] = { char = '', hl_group = 'ObsidianDone' },
-                ['_'] = { char = '󰩹', hl_group = 'ObsidianTodo' },
-                ['='] = { char = '󰏤', hl_group = 'ObsidianTodo' },
-                ['~'] = { char = '󰋖', hl_group = 'ObsidianTodo' },
+                [' '] = { char = '󰄱', hl_group = 'ObsidianTodo', },
+                ['x'] = { char = '', hl_group = 'ObsidianDone', },
+                ['_'] = { char = '󰩹', hl_group = 'ObsidianTodo', },
+                ['='] = { char = '󰏤', hl_group = 'ObsidianTodo', },
+                ['~'] = { char = '󰋖', hl_group = 'ObsidianTodo', },
             },
         },
         daily_notes = {
@@ -153,8 +153,8 @@ return {
             subdir = '.templates',
             substitutions = {
                 daily_title = function() return os.date('%A, %B %-d, %Y') end,
-                creation_time = function() return os.date('%Y-%m-%d') end
-            }
+                creation_time = function() return os.date('%Y-%m-%d') end,
+            },
         },
         -- image_name_func = function()
         --     return os.date('%d-%A-')
@@ -168,7 +168,7 @@ return {
                 note:add_alias(note.title)
             end
 
-            local out = { aliases = note.aliases }
+            local out = { aliases = note.aliases, }
 
             if #note.tags ~= 0 then
                 out.tags = note.tags
