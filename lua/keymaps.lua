@@ -25,6 +25,8 @@ end
 -- navigation
 map('', '<Up>', 'gk')
 map('', '<Down>', 'gj')
+map('i', '<Up>', '<C-o>gk')
+map('i', '<Down>', '<C-o>gj')
 map('', '<C-Left>', 'B')
 map('', '<C-Up>', '{')
 map('', '<C-Down>', '}')
