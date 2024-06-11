@@ -59,6 +59,8 @@ local function follow_link_or_toggle_checkbox()
         return '<cmd>ObsidianFollowLink<CR>'
     elseif vim.api.nvim_get_current_line():match('%s*%- %[.%]') then
         return "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>"
+    else
+        return '<cmd>ObsidianFollowLink<CR>'
     end
 end
 
