@@ -14,7 +14,7 @@ return {
             enable = true,
             additional_vim_regex_highlighting = false,
             disable = function(lang)
-                local enabled = { 'go', }
+                local enabled = { 'go', 'svelte', }
                 return not vim.tbl_contains(enabled, lang)
             end,
         },

@@ -7,6 +7,7 @@ return {
         null_ls.setup({
             sources = {
                 null_ls.builtins.formatting.jq,
+                null_ls.builtins.formatting.ocamlformat,
             },
         })
     end,
