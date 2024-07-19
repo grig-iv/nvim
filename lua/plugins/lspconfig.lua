@@ -2,12 +2,14 @@ local function servers_setup()
     local lspconfig = require('lspconfig')
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     local server_list = {
         'lua_ls',
         'nil_ls',
         'clojure_lsp',
         'gopls',
-        -- "ocamllsp",
+        'ocamllsp',
+        'svelte',
         -- "metals",
         -- "hls",
         -- "glsl_analyzer",
