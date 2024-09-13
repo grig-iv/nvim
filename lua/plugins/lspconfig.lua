@@ -45,7 +45,13 @@ local function servers_setup()
             },
         })
     end
+
+    lspconfig['tailwindcss'].setup({
+        capabilities = capabilities,
+        filetypes = { 'svelte', },
+    })
 end
+
 
 local function icons_setup()
     local signs = { Error = '󰅙 ', Warn = '󰀦 ', Hint = '󰌵 ', Info = '󰋼 ', }
