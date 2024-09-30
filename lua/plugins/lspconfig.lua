@@ -6,10 +6,11 @@ local function servers_setup()
     local server_list = {
         'lua_ls',
         'nil_ls',
-        'clojure_lsp',
+        'clangd',
         'gopls',
         'ocamllsp',
         'svelte',
+        -- 'clojure_lsp',
         -- "metals",
         -- "hls",
         -- "glsl_analyzer",
