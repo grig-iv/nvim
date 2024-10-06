@@ -34,6 +34,31 @@ map('', '<C-Right>', 'W')
 map('', '<S-Up>', 'ddkP')
 map('', '<S-Down>', 'ddjP')
 
+map('n', 'w', '<Nop>')
+map('n', 'b', '<Nop>')
+map('', 'o', 'w')
+map('', 'O', 'W')
+map('', 'n', 'b')
+map('', 'N', 'B')
+
+map('n', 'a', 'o')
+map('n', 'A', 'O')
+
+map('n', 'e', 'i')
+map('n', 'E', 'I')
+map('n', 'i', 'a')
+map('n', 'I', 'A')
+
+map('n', 'w', 'F')
+
+map('', 's', '/')
+map('', 'S', '?')
+
+map('', 'm', 'n')
+map('', 'M', 'N')
+
+map('', 'b', 'm')
+
 map('', '<Home>', '^')
 map('', '<End>', 'g_')
 map({ 'n', 'v', }, '<S-Home>', 'g0')
@@ -50,6 +75,9 @@ map('n', '<F19>', '<C-o>')
 map('n', '<F22>', '<Cmd>execute "normal! \\<C-i>"<CR>')
 
 map('n', '<Tab>', '<C-^>') -- alternate with perv buffer
+
+map('', 'gn', 'n')
+map('', 'gN', 'N')
 
 -- panes
 map('n', '<Leader>v', '<C-w>v')

@@ -81,8 +81,8 @@ return {
             -- Global mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-            vim.keymap.set('n', '<S-Left>', vim.diagnostic.goto_prev)
-            vim.keymap.set('n', '<S-Right>', vim.diagnostic.goto_next)
+            vim.keymap.set('n', 'gE', vim.diagnostic.goto_prev)
+            vim.keymap.set('n', 'ge', vim.diagnostic.goto_next)
             vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
             local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
