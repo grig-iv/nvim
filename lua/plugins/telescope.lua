@@ -45,10 +45,10 @@ return {
         },
         cmd = 'Telescope',
         keys = {
-            { '<C-f>', telescope('files'),             desc = 'Find files', },
-            { '<C-_>', '<cmd>Telescope live_grep<cr>', desc = 'Find text in files', }, -- in therminal <C-/> interpreting as <C-_>
-            { '<C-p>', '<cmd>Telescope commands<cr>',  desc = 'Find command', },
-            { 't',     '<cmd>Telescope<cr>',           desc = 'Telescope', },
+            { '<C-f>',     telescope('files'),             desc = 'Find files', },
+            { '<C-_>',     '<cmd>Telescope live_grep<cr>', desc = 'Find text in files', }, -- in therminal <C-/> interpreting as <C-_>
+            { '<C-p>',     '<cmd>Telescope commands<cr>',  desc = 'Find command', },
+            { '<Leader>t', '<cmd>Telescope<cr>',           desc = 'Telescope', },
             {
                 '<C-t>',
                 function()

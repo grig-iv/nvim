@@ -18,8 +18,8 @@ map('o', '<Leader>W', 'W')
 
 local pairs = { '{}', '()', '[]', '<>', }
 for _, p in ipairs(pairs) do
-    map('o', p:sub(1, 1), 'a' .. p:sub(1, 1))
-    map('o', p:sub(2, 2), 'i' .. p:sub(2, 2))
+    map('o', p:sub(1, 1), 'i' .. p:sub(1, 1))
+    map('o', p:sub(2, 2), 'a' .. p:sub(2, 2))
 end
 
 -- navigation
@@ -34,30 +34,26 @@ map('', '<C-Right>', 'W')
 map('', '<S-Up>', 'ddkP')
 map('', '<S-Down>', 'ddjP')
 
-map('n', 'w', '<Nop>')
-map('n', 'b', '<Nop>')
-map('', 'o', 'w')
-map('', 'O', 'W')
 map('', 'n', 'b')
 map('', 'N', 'B')
+map('', 'e', 'ge')
+map('', 'E', 'gE')
+map('', 'i', 'e')
+map('', 'I', 'E')
+map('', 'o', 'w')
+map('', 'O', 'W')
 
-map('n', 'a', 'o')
-map('n', 'A', 'O')
-
-map('n', 'e', 'i')
-map('n', 'E', 'I')
-map('n', 'i', 'a')
-map('n', 'I', 'A')
-
-map('n', 'w', 'F')
-
-map('', 's', '/')
-map('', 'S', '?')
+map('n', 'w', 'o')
+map('n', 'W', 'O')
+map('n', 'a', 'i')
+map('n', 'A', 'I')
+map('n', 't', 'a')
+map('n', 'T', 'A')
 
 map('', 'm', 'n')
 map('', 'M', 'N')
 
-map('', 'b', 'm')
+map('n', 'b', 'm')
 
 map('', '<Home>', '^')
 map('', '<End>', 'g_')
