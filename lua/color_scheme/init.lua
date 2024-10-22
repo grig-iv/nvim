@@ -2,9 +2,9 @@ require('utils').set_highlights(function(c)
     return {
         -- Core
         LineNR = { fg = c.surface2, },
+        SignColumn = {},
         CursorLineNR = { fg = c.accent, },
         CursorLine = { bg = c.surface0, },
-        SignColumn = {},
         EndOfBuffer = { fg = c.base, },
         DiffAdd = { fg = c.green, },
         DiffChange = { fg = c.yellow, },
@@ -23,6 +23,7 @@ require('utils').set_highlights(function(c)
         FloatBorder = { fg = c.primary, },
         FloatTitle = { fg = c.primary, bold = true, },
         VertSplit = { fg = c.overlay0, },
+        ColorColumn = { bg = c.surface0, },
 
         -- Syntax
         Keyword = { fg = c.keyword, bold = true, },
