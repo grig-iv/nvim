@@ -103,7 +103,6 @@ map('n', 'Q', '@q')                            -- perform mackro saved on "q"
 map('n', 'Y', 'y$')                            -- yank to the EOL
 map('n', 'U', '<C-r>')                         -- redo
 map('', '<C-y>', '"+y')
-map('', '<C-p>', '"+p')
 
 map('n', 'j', 'J')     -- join next line
 map('n', 'J', 'kJ')    -- join previous line
