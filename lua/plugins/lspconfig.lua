@@ -96,7 +96,11 @@ return {
                     vim.api.nvim_create_autocmd('BufWritePre', {
                         group = augroup,
                         buffer = ev.buf,
-                        callback = function()
+                        callback = function(opts)
+                            if vim.bo[opts.buf].filetype == 'go' then
+                                return
+                            end
+
                             vim.lsp.buf.format()
                         end,
                     })
