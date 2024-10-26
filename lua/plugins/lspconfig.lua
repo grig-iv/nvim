@@ -81,8 +81,8 @@ return {
             -- Global mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-            vim.keymap.set('n', 'gE', vim.diagnostic.goto_prev)
-            vim.keymap.set('n', 'ge', vim.diagnostic.goto_next)
+            vim.keymap.set('n', '<BS>e', vim.diagnostic.goto_prev)
+            vim.keymap.set('n', '<Enter>e', vim.diagnostic.goto_next)
             vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
             local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
@@ -110,11 +110,9 @@ return {
                     -- Buffer local mappings.
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
                     local opts = { buffer = ev.buf, }
-                    vim.keymap.set('n', '<Enter>', vim.lsp.buf.definition, opts)
-                    vim.keymap.set('n', '<S-Enter>', vim.lsp.buf.implementation, opts)
-                    vim.keymap.set('n', '<C-Enter> ', vim.lsp.buf.type_definition, opts)
-                    vim.keymap.set('n', '<C-S-Enter>', vim.lsp.buf.definition, opts)
-                    vim.keymap.set('n', '<C-u>', vim.lsp.buf.references, opts)
+                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+                    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts)
 
                     vim.keymap.set('n', 'h', vim.lsp.buf.hover, opts)
                     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)

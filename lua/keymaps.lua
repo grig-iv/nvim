@@ -8,6 +8,7 @@ map('', '^', '<Nop>')
 map('', '$', '<Nop>')
 map('', '<C-d>', '<Nop>')
 map('', '<C-u>', '<Nop>')
+map('', '<Enter>', '<Nop>')
 
 -- operators
 map('o', 'iw', ']w')

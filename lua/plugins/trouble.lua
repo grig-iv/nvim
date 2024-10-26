@@ -3,7 +3,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons', },
     event = { 'LspAttach', },
     keys = {
-        { 'gt', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)', },
+        { '<Leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Toggle diagnostics', },
     },
     opts = {
         focus = true,

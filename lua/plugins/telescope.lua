@@ -45,12 +45,12 @@ return {
         },
         cmd = 'Telescope',
         keys = {
-            { '<C-f>',     telescope('files'),                                 desc = 'Find files', },
-            { '<C-_>',     '<cmd>Telescope live_grep<cr>',                     desc = 'Find text in files', }, -- in therminal <C-/> interpreting as <C-_>
-            { 'gu',        '<cmd>Telescope lsp_references<cr>',                desc = 'Go to usages', },       -- in therminal <C-/> interpreting as <C-_>
-            { 'gs',        '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Go to symbols', },      -- in therminal <C-/> interpreting as <C-_>
-            { '<C-p>',     '<cmd>Telescope commands<cr>',                      desc = 'Find command', },
-            { '<Leader>t', '<cmd>Telescope<cr>',                               desc = 'Telescope', },
+            { '<C-f>',      telescope('files'),                                 desc = 'Find files', },
+            { '<C-_>',      '<cmd>Telescope live_grep<cr>',                     desc = 'Find text in files', }, -- in therminal <C-/> interpreting as <C-_>
+            { 'gu',         '<cmd>Telescope lsp_references<cr>',                desc = 'Go to usages', },      -- in therminal <C-/> interpreting as <C-_>
+            { 'gs',         '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', desc = 'Go to symbols', },     -- in therminal <C-/> interpreting as <C-_>
+            { '<C-p>',      '<cmd>Telescope commands<cr>',                      desc = 'Find command', },
+            { '<Leader>tt', '<cmd>Telescope<cr>',                               desc = 'Toggle telescope', },
             {
                 '<C-t>',
                 function()
