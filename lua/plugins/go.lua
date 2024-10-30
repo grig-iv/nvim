@@ -11,13 +11,12 @@ return {
     config = function()
         require('go').setup()
 
-        local format_sync_grp = vim.api.nvim_create_augroup('goimports', {})
-        vim.api.nvim_create_autocmd('BufWritePre', {
+        vim.api.nvim_create_autocmd('BufWinEnter', {
             pattern = '*.go',
-            callback = function()
-                require('go.format').goimports()
+            group = vim.api.nvim_create_augroup('goBufSetup', {}),
+            callback = function(buf)
+                vim.keymap.set('n', 'gm', '<cmd>e main.go<cr>', { buffer = true, })
             end,
-            group = format_sync_grp,
         })
     end,
 }

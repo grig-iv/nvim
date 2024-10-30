@@ -97,10 +97,6 @@ return {
                         group = augroup,
                         buffer = ev.buf,
                         callback = function(opts)
-                            if vim.bo[opts.buf].filetype == 'go' then
-                                return
-                            end
-
                             vim.lsp.buf.format()
                         end,
                     })
