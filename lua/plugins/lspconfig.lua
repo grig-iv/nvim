@@ -28,7 +28,7 @@ local function servers_setup()
                 },
                 gopls = {
                     completeUnimported = true,
-                    usePlaceholders = true,
+                    semanticTokens = true,
                 },
                 pylsp = {
                     plugins = {

@@ -52,6 +52,7 @@ require('utils').set_highlights(function(c)
         ['@lsp.type.method'] = { link = 'Function', },
         ['@lsp.type.string'] = { link = 'String', },
         ['@lsp.mod.defaultLibrary'] = { link = 'Constant', },
+        ['@lsp.mod.readonly'] = { link = 'Constant', },
         ['@lsp.typemod.variable.defaultLibrary'] = { link = 'Constant', },
         ['@lsp.type.property'] = { link = 'Property', },
         ['@lsp.type.variable'] = { fg = c.variable, },

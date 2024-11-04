@@ -14,7 +14,7 @@ return {
         vim.api.nvim_create_autocmd('BufWinEnter', {
             pattern = '*.go',
             group = vim.api.nvim_create_augroup('goBufSetup', {}),
-            callback = function(buf)
+            callback = function()
                 vim.keymap.set('n', 'gm', '<cmd>e main.go<cr>', { buffer = true, })
             end,
         })
