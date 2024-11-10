@@ -32,3 +32,8 @@ local g = _G.vim.g
 
 g.mapleader = ' '      -- space as leader key
 g.maplocalleader = '/' -- fowardslash as local leader key
+
+
+local o = _G.vim.o
+
+o.cmdheight = 0 -- hide empty command line
