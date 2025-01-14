@@ -83,17 +83,17 @@ local function on_buffer_first_enter()
     vim.keymap.set('n', 'gd', '<cmd>ObsidianToday<cr>', { buffer = true, })
     vim.keymap.set('n', 'gy', '<cmd>ObsidianToday -1<cr>', { buffer = true, })
 
-    vim.fn.matchadd('Conceal', '^# ', 10, -1)
-    vim.fn.matchadd('Conceal', '^## ', 10, -1)
-    vim.fn.matchadd('Conceal', '^### ', 10, -1)
-    vim.fn.matchadd('Conceal', '^#### ', 10, -1)
-    vim.fn.matchadd('Conceal', '^##### ', 10, -1)
-    vim.fn.matchadd('Conceal', '^###### ', 10, -1)
-    vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ', })
-    vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ', })
-    vim.fn.matchadd('Conceal', '^`', 10, -1)
-    vim.fn.matchadd('Conceal', '`$', 10, -1)
-
+    -- vim.fn.matchadd('Conceal', '^# ', 10, -1)
+    -- vim.fn.matchadd('Conceal', '^## ', 10, -1)
+    -- vim.fn.matchadd('Conceal', '^### ', 10, -1)
+    -- vim.fn.matchadd('Conceal', '^#### ', 10, -1)
+    -- vim.fn.matchadd('Conceal', '^##### ', 10, -1)
+    -- vim.fn.matchadd('Conceal', '^###### ', 10, -1)
+    -- vim.fn.matchadd('Conceal', ' `', 10, -1, { conceal = ' ', })
+    -- vim.fn.matchadd('Conceal', '` ', 10, -1, { conceal = ' ', })
+    -- vim.fn.matchadd('Conceal', '^`', 10, -1)
+    -- vim.fn.matchadd('Conceal', '`$', 10, -1)
+    --
     if not is_journal_buf() then
         fold_properties()
     end
@@ -105,7 +105,7 @@ local function config(_, opts)
 
     local opened_buffers = {}
     vim.api.nvim_create_autocmd('BufWinEnter', {
-        pattern = '*/Extended Mind/*',
+        pattern = '*/mind/*',
         callback = function(ev)
             if not vim.tbl_contains(opened_buffers, ev.buf) then
                 table.insert(opened_buffers, ev.buf)
@@ -135,8 +135,8 @@ return {
     opts = {
         workspaces = {
             {
-                name = 'extended-mind',
-                path = '~/Extended Mind/',
+                name = 'mind',
+                path = '~/mind/',
             },
         },
         ui = {

@@ -1,5 +1,6 @@
 return {
     'shortcuts/no-neck-pain.nvim',
+    enabled = false,
     version = '*',
     config = function(_, opts)
         local no_neck_pain = require('no-neck-pain')

@@ -46,6 +46,12 @@ local function load_snippets()
             i(0),
         })),
 
+
+        s('s', fmt('type {} struct {{\n\t{}\n}}', {
+            i(1),
+            i(0),
+        })),
+
         s('go', fmt('go func() {{\n\t{}\n}}()', { i(1), })),
     })
 end

@@ -28,3 +28,17 @@ vim.api.nvim_create_autocmd('VimEnter', {
         vim.cmd('tabdo windo clearjumps')
     end,
 })
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+    pattern = '*',
+    callback = function()
+        os.execute('on-insert-enter')
+    end,
+})
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+    pattern = '*',
+    callback = function()
+        os.execute('on-insert-exit')
+    end,
+})
