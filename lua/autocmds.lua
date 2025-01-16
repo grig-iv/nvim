@@ -29,16 +29,20 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end,
 })
 
-vim.api.nvim_create_autocmd('InsertEnter', {
-    pattern = '*',
-    callback = function()
-        os.execute('on-insert-enter')
-    end,
-})
+local utils = require('utils')
 
-vim.api.nvim_create_autocmd('InsertLeave', {
-    pattern = '*',
-    callback = function()
-        os.execute('on-insert-exit')
-    end,
-})
+if not utils.is_wsl_host then
+    vim.api.nvim_create_autocmd('InsertEnter', {
+        pattern = '*',
+        callback = function()
+            os.execute('on-insert-enter')
+        end,
+    })
+
+    vim.api.nvim_create_autocmd('InsertLeave', {
+        pattern = '*',
+        callback = function()
+            os.execute('on-insert-exit')
+        end,
+    })
+end
