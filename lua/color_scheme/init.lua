@@ -1,6 +1,7 @@
 require('utils').set_highlights(function(c)
     return {
         -- Core
+        Normal = {},
         LineNR = { fg = c.surface2, },
         SignColumn = {},
         CursorLineNR = { fg = c.accent, },
