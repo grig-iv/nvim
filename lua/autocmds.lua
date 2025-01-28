@@ -29,8 +29,8 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end,
 })
 
+-- insert enter/exit shell hook
 local utils = require('utils')
-
 if not utils.is_wsl_host then
     vim.api.nvim_create_autocmd('InsertEnter', {
         pattern = '*',

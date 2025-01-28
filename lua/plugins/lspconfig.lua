@@ -10,6 +10,7 @@ local function servers_setup()
         'gopls',
         'ocamllsp',
         'svelte',
+        'marksman',
         -- 'clojure_lsp',
         -- "metals",
         -- "hls",

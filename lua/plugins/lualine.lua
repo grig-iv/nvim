@@ -56,7 +56,7 @@ local diff = {
     cond = function()
         local buf_path = vim.api.nvim_buf_get_name(0)
         -- TODO: remove magich string
-        return vim.fn.count(buf_path, '/Extended Mind/') == 0
+        return vim.fn.count(buf_path, '/mind/') == 0
     end,
     source = function()
         ---@diagnostic disable-next-line: undefined-field

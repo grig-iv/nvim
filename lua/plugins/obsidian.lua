@@ -66,7 +66,7 @@ end
 
 local function telescope_default_search()
     require('telescope.builtin').find_files({
-        cwd = '~/Extended Mind/',
+        cwd = '~/mind/',
         find_command = { 'rg', '--files', '-g', '!archives/**', '-g', '*.md', '-g', '*.txt', },
     })
 end
@@ -126,6 +126,7 @@ end
 
 return {
     'epwalsh/obsidian.nvim',
+    enabled = false,
     version = '*',
     ft = 'markdown',
     dependencies = {
