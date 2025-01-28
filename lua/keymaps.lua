@@ -37,12 +37,14 @@ map('', '<S-Down>', 'ddjP')
 
 map('', 'n', 'b')
 map('', 'N', 'B')
-map('', 'e', 'ge')
-map('', 'E', 'gE')
-map({ 'n', 'v', }, 'i', 'e')
-map('', 'I', 'E')
 map('', 'o', 'w')
 map('', 'O', 'W')
+
+map('', 'ee', 'ge')
+map('', 'eE', 'gE')
+
+map({ 'n', 'v', }, 'ie', 'e')
+map({ 'n', 'v', }, 'iE', 'E')
 
 map('n', 'w', 'o')
 map('n', 'W', 'O')

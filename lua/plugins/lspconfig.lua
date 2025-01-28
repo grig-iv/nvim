@@ -10,6 +10,7 @@ local function servers_setup()
         'gopls',
         'ocamllsp',
         'zls',
+        'marksman',
 
         'biome',
         'html',
@@ -17,7 +18,6 @@ local function servers_setup()
         'tsserver',
         'svelte',
         'tailwindcss',
-
         -- 'clojure_lsp',
         -- "metals",
         -- "hls",

@@ -3,6 +3,7 @@ require('utils').set_highlights(function(c)
         -- Core
         Normal = {},
         LineNR = { fg = c.surface2, },
+        StatusLine = { link = 'Normal', },
         SignColumn = {},
         CursorLineNR = { fg = c.accent, },
         CursorLine = { bg = c.surface0, },
