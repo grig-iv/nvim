@@ -31,6 +31,7 @@ local theme = {
 local mode = {
     'mode',
     color = { gui = 'bold', },
+    fmt = function(str) return str:sub(1, 1) end,
 }
 
 local filename = {
@@ -56,7 +57,7 @@ local diff = {
     cond = function()
         local buf_path = vim.api.nvim_buf_get_name(0)
         -- TODO: remove magich string
-        return vim.fn.count(buf_path, '/Extended Mind/') == 0
+        return vim.fn.count(buf_path, '/mind/') == 0
     end,
     source = function()
         ---@diagnostic disable-next-line: undefined-field
@@ -83,7 +84,7 @@ return {
     event = { 'BufReadPost', 'BufNewFile', },
     opts = {
         options = {
-            section_separators = { left = '', right = '', },
+            section_separators = { left = '', right = '', },
             component_separators = '|',
             theme = theme,
             globalstatus = true,
