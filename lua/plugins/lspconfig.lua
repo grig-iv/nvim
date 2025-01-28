@@ -9,7 +9,15 @@ local function servers_setup()
         'clangd',
         'gopls',
         'ocamllsp',
+        'zls',
+
+        'biome',
+        'html',
+        'cssls',
+        'tsserver',
         'svelte',
+        'tailwindcss',
+
         -- 'clojure_lsp',
         -- "metals",
         -- "hls",
@@ -48,10 +56,10 @@ local function servers_setup()
         })
     end
 
-    lspconfig['tailwindcss'].setup({
-        capabilities = capabilities,
-        filetypes = { 'svelte', },
-    })
+    -- lspconfig['eslint'].setup({
+    --     capabilities = capabilities,
+    --     filetypes = { 'html', },
+    -- })
 end
 
 
@@ -82,8 +90,8 @@ return {
             -- Global mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-            vim.keymap.set('n', '<BS>e', vim.diagnostic.goto_prev)
-            vim.keymap.set('n', '<Enter>e', vim.diagnostic.goto_next)
+            vim.keymap.set('n', 'ed', vim.diagnostic.goto_prev)
+            vim.keymap.set('n', 'id', vim.diagnostic.goto_next)
             vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
             local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
