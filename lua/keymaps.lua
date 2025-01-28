@@ -99,35 +99,23 @@ map('n', '<C-Tab>', '<Cmd>bn<Cr>')
 map('n', '<S-C-Tab>', '<Cmd>bp<Cr>')
 
 -- enhance
-map('n', '<C-s>', '<Cmd>silent wa<Cr>')        -- save
-map('n', '<C-S-q>', '<Cmd>wa<Cr><Cmd>qa!<Cr>') -- force exit
-map('n', 'Q', '@q')                            -- perform mackro saved on "q"
-map('n', 'Y', 'y$')                            -- yank to the EOL
-map('n', 'U', '<C-r>')                         -- redo
+map('n', 'Q', '@q')    -- perform mackro saved on "q"
+map('n', 'Y', 'y$')    -- yank to the EOL
+map('n', 'U', '<C-r>') -- redo
+map('n', 'x', '"_x')   -- dont save deleted char
+map('n', '%', 'ggVG')  -- select all buffer
 map('', '<C-y>', '"+y')
 
-map('n', 'j', 'J')     -- join next line
-map('n', 'J', 'kJ')    -- join previous line
+map('n', '<C-s>', '<Cmd>silent wa<Cr>')        -- save
+map('n', '<C-S-q>', '<Cmd>wa<Cr><Cmd>qa!<Cr>') -- force exit
 
-map('', '<C-,>', 'F.') -- jump to previous dot in line
-map('', '<C-.>', 'f.') -- jump to next dot in line
+map('n', '+', '<C-a>')                         -- inc
+map('n', '-', '<C-x>')                         -- dec
+
+map('n', 'j', 'J')                             -- join next line
+map('n', 'J', 'kJ')                            -- join previous line
+
+map('', '<C-,>', 'F.')                         -- jump to previous dot in line
+map('', '<C-.>', 'f.')                         -- jump to next dot in line
 
 map('', '<C-S-s>', '<Esc><Cmd>w<CR>')
-
--- increment number or upper char under cursor
-map('n', '<S-PageUp>', function()
-    if utils.char_under_cursor_is_digit() then
-        return '<C-a>'
-    else
-        return 'gUl'
-    end
-end, { expr = true, })
-
--- decrement number or lower char under cursor
-map('n', '<S-PageDown>', function()
-    if utils.char_under_cursor_is_digit() then
-        return '<C-x>'
-    else
-        return 'gul'
-    end
-end, { expr = true, })
