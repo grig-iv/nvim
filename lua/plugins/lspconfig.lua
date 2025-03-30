@@ -15,7 +15,7 @@ local function servers_setup()
         'biome',
         'html',
         'cssls',
-        'tsserver',
+        'ts_ls',
         'svelte',
         'tailwindcss',
         -- 'clojure_lsp',
