@@ -3,5 +3,8 @@ return {
     event = 'BufReadPost',
     opts = {
         hlgroup = 'Underlined',
+        animate = {
+            enabled = false,
+        },
     },
 }
