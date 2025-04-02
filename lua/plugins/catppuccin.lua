@@ -1,7 +1,7 @@
 return {
     'catppuccin/nvim',
     name = 'catppuccin',
-    enabled = false,
+    enabled = true,
     priority = 1000,
     opts = {
         flavour = 'mocha',
@@ -46,36 +46,102 @@ return {
         require('catppuccin').setup(opts)
         vim.cmd([[colorscheme catppuccin]])
 
-        local colors = require('catppuccin.palettes').get_palette(opts.flavour)
+        local c = require('catppuccin.palettes').get_palette(opts.flavour)
 
-        vim.api.nvim_set_hl(0, 'Property', { fg = colors.peach, })
-        vim.api.nvim_set_hl(0, 'Operator', { fg = colors.red, })
+        local accent = c.peach
+        local critical = c.red
+        local warning = c.yellow
+        local primary = c.sky
 
-        vim.api.nvim_set_hl(0, '@lsp.type.keyword', { link = 'Keyword', })
-        vim.api.nvim_set_hl(0, '@lsp.type.modifier', { link = 'Keyword', })
-        vim.api.nvim_set_hl(0, '@lsp.type.function', { link = 'Function', })
-        vim.api.nvim_set_hl(0, '@lsp.type.method', { link = 'Function', })
-        vim.api.nvim_set_hl(0, '@lsp.type.parameter', { fg = colors.peach, })
-        vim.api.nvim_set_hl(0, '@lsp.type.string', { link = 'String', })
-        vim.api.nvim_set_hl(0, '@lsp.type.enum', { fg = colors.blue, })
-        vim.api.nvim_set_hl(0, '@lsp.type.class', { fg = colors.sky, })
-        vim.api.nvim_set_hl(0, '@lsp.type.struct', { link = 'Structure', })
-        vim.api.nvim_set_hl(0, '@lsp.type.interface', { fg = colors.teal, })
-        vim.api.nvim_set_hl(0, '@lsp.type.number', { fg = colors.lavender, })
-        vim.api.nvim_set_hl(0, '@lsp.type.operator', { fg = colors.maroon, })
-        vim.api.nvim_set_hl(0, '@lsp.type.property', { link = 'Property', })
-        vim.api.nvim_set_hl(0, '@lsp.type.variable', { fg = colors.text, })
-        vim.api.nvim_set_hl(0, '@lsp.mod.global', { link = 'Constant', })
-        vim.api.nvim_set_hl(0, '@lsp.mod.defaultLibrary', { link = 'Constant', })
+        require('utils').set_highlights({
+            -- Core
+            Normal = {},
+            LineNR = { fg = c.surface2, },
+            StatusLine = { link = 'Normal', },
+            SignColumn = {},
+            CursorLineNR = { fg = accent, },
+            CursorLine = { bg = c.surface0, },
+            EndOfBuffer = { fg = c.base, },
+            DiffAdd = { fg = c.green, },
+            DiffChange = { fg = c.yellow, },
+            DiffDelete = { fg = c.red, },
+            ErrorMsg = { fg = c.red, },
+            WarningMsg = { fg = c.yellow, },
+            Underlined = { underline = true, },
+            Visual = { bg = c.surface1, italic = true, },
+            Conceal = {},
+            Title = { link = 'Keyword', },
+            Folded = { link = 'Comment', },
+            Error = { fg = critical, },
+            Todo = { fg = warning, },
+            Special = { fg = accent, },
+            Pmenu = { fg = c.text, bg = 'none', },
+            FloatBorder = { fg = primary, },
+            FloatTitle = { fg = primary, bold = true, },
+            VertSplit = { fg = c.overlay0, },
+            ColorColumn = { bg = c.surface0, },
 
-        vim.api.nvim_set_hl(0, '@keyword', { link = 'Keyword', })
-        vim.api.nvim_set_hl(0, '@keyword.return', { link = 'Keyword', })
-        vim.api.nvim_set_hl(0, '@keyword.function', { link = 'Keyword', })
-        vim.api.nvim_set_hl(0, '@keyword.operator', { link = 'Keyword', })
-        vim.api.nvim_set_hl(0, '@type.builtin', { link = 'Keyword', })
-        vim.api.nvim_set_hl(0, '@variable.builtin', { link = 'Constant', })
-        vim.api.nvim_set_hl(0, '@function.builtin', { link = 'Function', })
-        vim.api.nvim_set_hl(0, '@property.go', { link = 'Property', })
-        vim.api.nvim_set_hl(0, '@field.go', { link = 'Property', })
+            -- Syntax
+            Keyword = { fg = c.red, bold = true, },
+            Statement = { link = 'Keyword', },
+            Exception = { link = 'Keyword', },
+            PreProc = { link = 'Keyword', },
+            Comment = { fg = c.surface2, italic = true, },
+            Function = { fg = c['function'], },
+            Type = { fg = c.sapphire, },
+            String = { fg = c.yellow, },
+            Constant = { fg = c.mauve, },
+            Identifier = { fg = c.text, },
+            Property = { fg = c.blue, },
+
+            -- Lsp
+            DiagnosticError = { fg = critical, },
+            DiagnosticWarn = { fg = warning, },
+            DiagnosticInfo = { fg = c.mauve, },
+            DiagnosticHint = { fg = c.green, },
+            DiagnosticVirtualTextError = { fg = critical, italic = true, },
+            DiagnosticVirtualTextWarn = { fg = warning, italic = true, },
+            DiagnosticVirtualTextInfo = { fg = c.mauve, italic = true, },
+            DiagnosticVirtualTextHint = { fg = c.green, italic = true, },
+
+            -- Semantic Tokens
+            ['@lsp.type.method'] = { link = 'Function', },
+            ['@lsp.type.string'] = { link = 'String', },
+            ['@lsp.mod.defaultLibrary'] = { link = 'Constant', },
+            ['@lsp.mod.readonly'] = { link = 'Constant', },
+            ['@lsp.typemod.variable.defaultLibrary'] = { link = 'Constant', },
+            ['@lsp.type.property'] = { link = 'Property', },
+            ['@lsp.type.variable'] = { fg = c.text, },
+            ['@lsp.type.parameter'] = { fg = c.peach, },
+
+            -- Treesitter
+            ['@punctuation'] = { fg = c.text, },
+            ['@property'] = { link = 'Property', },
+            ['@function.builtin'] = { link = 'Constant', },
+            ['@type.builtin'] = { link = 'Constant', },
+
+            -- Syntax
+
+            -- lua
+            luaTable = { fg = c.text, },
+            luaFunction = { link = 'Keyword', },
+
+            -- nix
+            nixFunctionCall = { link = 'Function', },
+            nixIntropolation = {},
+            nixIntropolationParam = {},
+            nixIntropolationDelimiter = { link = 'Constant', bold = true, },
+
+            -- markdown
+            markdownH1 = { fg = c.base, bg = accent, bold = true, },
+            markdownH2 = { fg = accent, bold = true, },
+            markdownH3 = { fg = accent, },
+            markdownH4 = { fg = accent, italic = true, },
+            markdownH5 = { fg = accent, italic = true, },
+            markdownH6 = { fg = accent, italic = true, },
+            markdownCode = { fg = primary, bg = c.surface0, },
+        })
+
+        vim.cmd.colorscheme 'catppuccin'
     end,
 }
