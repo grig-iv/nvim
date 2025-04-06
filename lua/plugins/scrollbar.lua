@@ -1,4 +1,4 @@
-local colors = require('color_scheme.palette')
+local colors = require('catppuccin.palettes').get_palette('mocha')
 
 return {
     'petertriho/nvim-scrollbar',

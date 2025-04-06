@@ -1,8 +1,12 @@
-local p = require('color_scheme.palette')
+local p = require('catppuccin.palettes').get_palette('mocha')
+
+-- todo move to separate module
+local accent = p.peach
+local primary = p.sky
 
 local theme = {
     normal = {
-        a = { bg = p.surface0, fg = p.primary, },
+        a = { bg = p.surface0, fg = primary, },
         b = { bg = 'none', fg = p.text, },
         c = { bg = 'none', fg = p.text, },
     },
@@ -17,7 +21,7 @@ local theme = {
         c = { bg = 'none', fg = p.text, },
     },
     command = {
-        a = { bg = p.surface0, fg = p.accent, },
+        a = { bg = p.surface0, fg = accent, },
         b = { bg = 'none', fg = p.text, },
         c = { bg = 'none', fg = p.text, },
     },

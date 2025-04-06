@@ -27,16 +27,9 @@ function M.char_under_cursor_is_digit()
         :match('%d')
 end
 
----@param higlights table | function
+---@param higlights table
 function M.set_highlights(higlights)
-    local groups = {}
-    if type(higlights) == 'function' then
-        local palette = require('color_scheme.palette')
-        groups = higlights(palette)
-    else
-        groups = higlights
-    end
-    for name, value in pairs(groups) do
+    for name, value in pairs(higlights) do
         vim.api.nvim_set_hl(0, name, value)
     end
 end
