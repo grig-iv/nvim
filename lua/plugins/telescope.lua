@@ -46,7 +46,7 @@ return {
         cmd = 'Telescope',
         keys = {
             { '<C-f>',      telescope('files'),                                 desc = 'Find files', },
-            { '<C-_>',      '<cmd>Telescope live_grep<cr>',                     desc = 'Find text in files', }, -- in therminal <C-/> interpreting as <C-_>
+            { '<Leader>/',  '<cmd>Telescope live_grep<cr>',                     desc = 'Find text in files', }, -- in therminal <C-/> interpreting as <C-_>
             { '<C-p>',      '<cmd>Telescope commands<cr>',                      desc = 'Find command', },
             { 'gu',         '<cmd>Telescope lsp_references<cr>',                desc = 'Go to usages', },
             { 'gr',         '<cmd>Telescope lsp_references<cr>',                desc = 'Go to references', },
@@ -65,16 +65,6 @@ return {
         },
         config = function()
             require('telescope').load_extension('recent_files')
-
-            require('utils').set_highlights(function(c)
-                return {
-                    TelescopeBorder = { link = 'FloatBorder', },
-                    TelescopeTitle = { link = 'FloatTitle', },
-                    TelescopePromptCounter = { fg = c.comment, },
-                    TelescopeSelection = { fg = c.accent, bg = c.surface0, },
-                    TelescopeMatching = { fg = c.primary, bold = true, },
-                }
-            end)
         end,
     },
 }
