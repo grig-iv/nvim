@@ -4,8 +4,6 @@ local map = utils.map
 -- TODO add which key just for documenting purpose
 
 -- nopes
-map('', '^', '<Nop>')
-map('', '$', '<Nop>')
 map('', '<C-d>', '<Nop>')
 map('', '<C-u>', '<Nop>')
 map('', '<Enter>', '<Nop>')
@@ -35,28 +33,16 @@ map('', '<C-Right>', 'W')
 map('', '<S-Up>', 'ddkP')
 map('', '<S-Down>', 'ddjP')
 
-map('', 'n', 'b')
-map('', 'N', 'B')
-map('', 'o', 'w')
-map('', 'O', 'W')
-
 map('', 'ee', 'ge')
 map('', 'eE', 'gE')
 
 map({ 'n', 'v', }, 'ie', 'e')
 map({ 'n', 'v', }, 'iE', 'E')
 
-map('n', 'w', 'o')
-map('n', 'W', 'O')
 map('n', 'a', 'i')
 map('n', 'A', 'I')
 map('n', 't', 'a')
 map('n', 'T', 'A')
-
-map('', 'm', 'n')
-map('', 'M', 'N')
-
-map('n', 'b', 'm')
 
 map('', '<Home>', '^')
 map('', '<End>', 'g_')
@@ -84,9 +70,6 @@ map('n', '<Leader>h', '<C-w>s')
 map('n', '<C-q>', '<Cmd>wa<Cr><C-w>q')
 
 -- removing double click
-map('n', 'dd', '<Nop>')
-map('n', 'cc', '<Nop>')
-map('n', 'yy', '<Nop>')
 map('n', 'dl', 'dd')
 map('n', 'cl', 'cc')
 map('n', 'yl', 'yy')
