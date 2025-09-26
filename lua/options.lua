@@ -6,10 +6,14 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.showmode = false
+vim.o.cmdheight = 0
 
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+vim.o.autoindent = true -- auto-indent new lines
+vim.o.smartindent = true -- enable smart-indent
+vim.o.expandtab = true -- use spaces instead of tabs
+vim.o.tabstop = 4 -- number of columns per tab
+vim.o.softtabstop = 4 -- number of spaces per Tab
+vim.o.shiftwidth = 4 -- number of auto-indent spaces
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -58,3 +62,7 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)

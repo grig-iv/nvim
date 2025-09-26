@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 -- enhance
-map('n', '<C-s>', '<Cmd>silent wa<Cr>') -- Ctrl-s for save
+map('n', '<C-s>', '<cmd>silent wa<cr><esc>') -- Ctrl-s for save
 
 map('n', 'Q', '@q') -- perform mackro saved on "q"
 map('n', 'Y', 'y$') -- yank to the EOL
@@ -20,6 +20,7 @@ map('', '<C-,>', 'F.') -- jump to previous dot in line
 map('', '<C-.>', 'f.') -- jump to next dot in line
 
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- removing double click
