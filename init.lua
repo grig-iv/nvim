@@ -297,6 +297,7 @@ require('lazy').setup {
         gopls = {},
 
         ts_ls = {},
+        svelte = {},
         html = {},
         cssls = {},
         tailwindcss = {},

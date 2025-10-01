@@ -19,6 +19,9 @@ map('n', 'J', 'kJ') -- join previous line
 map('', '<C-,>', 'F.') -- jump to previous dot in line
 map('', '<C-.>', 'f.') -- jump to next dot in line
 
+map({ 'n', 'v' }, 'c', '"_c') -- don't copy cuted text
+map('n', 'C', '"_C') -- don't copy cuted text
+
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
