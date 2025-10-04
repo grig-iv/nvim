@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_autocmd('VimEnter', {
   desc = 'Auto-change to project root based on .git directory',
+  group = vim.api.nvim_create_augroup('cd-root', { clear = true }),
   callback = function()
     local root_markers = { '.git', '.gitignore', 'package.json', 'Cargo.toml', 'go.mod' }
     local root_dir = vim.fs.dirname(vim.fs.find(root_markers, { upward = true })[1])

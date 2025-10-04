@@ -65,6 +65,7 @@ require('lazy').setup {
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'smartpde/telescope-recent-files' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -121,6 +122,9 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<C-t>', function()
+        require('telescope').extensions.recent_files.pick { only_cwd = true }
+      end, { desc = 'Find files' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
