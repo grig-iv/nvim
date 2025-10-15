@@ -39,10 +39,10 @@ map('', '<C-S-PageDown>', '<C-f>') -- full page down
 map('', '<C-PageUp>', 'gg') -- go to the buffer start
 map('', '<C-PageDown>', 'G') -- go to the buffer end
 
-map('', '<Find>', '^') -- <Home> for go to the line start
-map('', '<Select>', 'g_') -- <End> for go to the line end
-map({ 'n', 'v' }, '<S-Find>', 'g0')
-map('', '<S-Select>', 'g$')
+map('', '<Home>', '^') -- <Home> for go to the line start
+map('', '<End>', 'g_') -- <End> for go to the line end
+map({ 'n', 'v' }, '<S-Home>', 'g0')
+map('', '<S-End>', 'g$')
 
 map('n', '<Tab>', '<C-^>') -- alternate with perv buffer
 
