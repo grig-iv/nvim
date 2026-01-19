@@ -32,6 +32,9 @@ map('n', 'cl', 'cc')
 map('n', 'yl', 'yy')
 
 -- navigation
+map('', '<Up>', 'gk')
+map('', '<Down>', 'gj')
+
 map('', '<PageUp>', '<C-u>') -- half page up
 map('', '<PageDown>', '<C-d>') -- half page donw
 map('', '<C-S-PageUp>', '<C-b>') -- full page up
