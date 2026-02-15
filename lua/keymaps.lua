@@ -35,6 +35,9 @@ map('n', 'yl', 'yy')
 map('', '<Up>', 'gk')
 map('', '<Down>', 'gj')
 
+map('', '<C-Up>', '<cmd>keeppatterns ?^\\s*$<cr>')
+map('', '<C-Down>', '<cmd>keeppatterns /^\\s*$<cr>')
+
 map('', '<PageUp>', '<C-u>') -- half page up
 map('', '<PageDown>', '<C-d>') -- half page donw
 map('', '<C-S-PageUp>', '<C-b>') -- full page up
