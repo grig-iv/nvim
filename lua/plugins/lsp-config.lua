@@ -2,13 +2,6 @@ return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
   dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for Neovim
-    -- Mason must be loaded before its dependents so we need to set it up here.
-    -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-    { 'mason-org/mason.nvim', opts = {} },
-    'mason-org/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {
       notification = { window = { winblend = 0 } },
     } },
@@ -135,14 +128,14 @@ return {
 
     local servers = {
       gopls = {},
-
       ts_ls = {},
       svelte = {},
       html = {},
       cssls = {},
       tailwindcss = {},
       qmlls = {},
-
+      pyright = {},
+      gleam = {},
       lua_ls = {
         settings = {
           Lua = {
@@ -157,19 +150,10 @@ return {
 
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-    require('mason-lspconfig').setup {
-      ensure_installed = vim.tbl_keys(servers or {}),
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for ts_ls)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
+    for server, config in pairs(servers) do
+      config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      vim.lsp.config(server, config)
+      vim.lsp.enable(server)
+    end
   end,
 }
