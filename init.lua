@@ -13,6 +13,7 @@ end
 ---@type vim.Option
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
+rtp:append '/home/grig/.opam/5.3.0/share/ocp-indent/vim'
 
 -- [[ Configure and install plugins ]]
 require('lazy').setup {

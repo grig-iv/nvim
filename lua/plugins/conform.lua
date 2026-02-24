@@ -33,6 +33,7 @@ return { -- Autoformat
       lua = { 'stylua' },
       json = { 'prettier' },
       jsonc = { 'prettier' },
+      ocaml = { 'ocamlformat' },
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
     },
   },

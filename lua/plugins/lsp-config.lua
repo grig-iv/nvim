@@ -136,6 +136,7 @@ return {
       qmlls = {},
       pyright = {},
       gleam = {},
+      ocamllsp = {},
       lua_ls = {
         settings = {
           Lua = {
