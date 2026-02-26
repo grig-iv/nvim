@@ -2,9 +2,10 @@ return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'j-hui/fidget.nvim', opts = {
-      notification = { window = { winblend = 0 } },
-    } },
+    {
+      'j-hui/fidget.nvim',
+      opts = { notification = { window = { winblend = 0 } } },
+    },
 
     -- Allows extra capabilities provided by blink.cmp
     'saghen/blink.cmp',
