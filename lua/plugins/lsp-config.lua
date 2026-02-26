@@ -19,12 +19,27 @@ return {
 
         map('<C-r>', vim.lsp.buf.rename, '')
         map('<C-a>', vim.lsp.buf.code_action, '')
+
         map('h', vim.lsp.buf.hover, '')
+        map('H', function()
+          vim.diagnostic.open_float { scope = 'line' }
+        end, '')
+
+        map('<leader>lr', '<cmd>LspRestart<cr>', 'Lsp Restart')
+
         map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
         map('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
         map('gu', require('telescope.builtin').lsp_references, '[G]oto [U]sage')
-        --        map('gp', vim.lsp.buf.diagnostic.goto_prev, '[G]oto [P]rev diagnostic')
-        --          map('gn', vim.lsp.buf.diagnostic.goto_next, '[G]oto [N]ext diagnostic')
+
+        map('gp', function()
+          vim.diagnostic.jump { count = -1 }
+          vim.diagnostic.open_float { scope = 'cursor' }
+        end, '[G]oto [P]rev diagnostic')
+
+        map('gn', function()
+          vim.diagnostic.jump { count = 1 }
+          vim.diagnostic.open_float { scope = 'cursor' }
+        end, '[G]oto [N]ext diagnostic')
 
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
