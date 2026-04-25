@@ -56,6 +56,7 @@ map('n', '<Tab>', '<C-^>') -- alternate with perv buffer
 map('n', '<Leader>v', '<C-w>v')
 map('n', '<Leader>h', '<C-w>s')
 map('n', '<C-q>', '<Cmd>wa<Cr><C-w>q')
+map('n', '<C-S-q>', '<Cmd>q!<Cr>')
 
 -- nopes
 map('', '<Enter>', '<Nop>') -- disable Enter

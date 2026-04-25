@@ -143,6 +143,7 @@ return {
     }
 
     local servers = {
+      nushell = {},
       gopls = {},
       ts_ls = {},
       svelte = {},
